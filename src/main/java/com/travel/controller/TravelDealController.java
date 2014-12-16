@@ -1,27 +1,39 @@
 package com.travel.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.travel.dto.Hotels;
+import com.travel.service.HotelService;
 
 
 @Controller
 public class TravelDealController {
     
+    @Autowired
+    private HotelService hotelService;
+    
     @RequestMapping("/travelDeal")
     public String displayTravelDeals(final Model model){
+        getHotelsList(1,5);
 
         return "../homePage";
     }
     
     @RequestMapping("/hotelsList") 
-     public Hotels getHotelsList(String param)
-                 {
-                return null;
+     public List<Hotels> getHotelsList(int startIndex,int offset)
+            {
+        List<Hotels> hotelsList=hotelService.getAllHotels(startIndex,offset);
+        System.out.println("hello");
+        
+        for ( Hotels t : hotelsList){
+                      System.out.println(t.getName());
+                    }
+                return hotelsList;
             }
 
 
