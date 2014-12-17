@@ -44,6 +44,7 @@
 					} 
 					
 					else {
+						 $('.container .show-more-span').hide();
 						console.log('No Hotels available');
 						
 					}

@@ -21,14 +21,14 @@ public class TravelDealController {
     @RequestMapping(value="/travelDeal", method = RequestMethod.GET)
     public String displayTravelDeals(){
 
-        return "../homePage";
+        return "/homePage";
     }
     
     @ResponseBody
     @RequestMapping(value="/hotelsList", method = RequestMethod.POST) 
      public List<Hotels> getHotelsList() {
      int pageNo=1;
-    int offset=5;
+    int offset=8;
                 List<Hotels> hotelsList=hotelService.getAllHotels(pageNo,offset);
                 System.out.println("hotelsList");
                 return hotelsList;
