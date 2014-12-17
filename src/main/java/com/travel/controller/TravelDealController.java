@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.travel.dto.Hotels;
 import com.travel.service.HotelService;
@@ -23,10 +24,10 @@ public class TravelDealController {
         return "../homePage";
     }
     
-    @RequestMapping("/hotelsList") 
-     public List<Hotels> getHotelsList(int startIndex,int offset)
+    @RequestMapping(value="/hotelsList", method = RequestMethod.POST) 
+     public List<Hotels> getHotelsList(int pageNo,int offset)
             {
-                List<Hotels> hotelsList=hotelService.getAllHotels(startIndex,offset);
+                List<Hotels> hotelsList=hotelService.getAllHotels(pageNo,offset);
                 System.out.println("hello");
                 return hotelsList;
             }
