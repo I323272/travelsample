@@ -4,7 +4,9 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="WEB-INF/js/homePage.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/js/homePage.js"></script>
+<link href="static/css/homePage.css" rel="stylesheet"/>
 <title>TravelDeals</title>
 </head>
 
@@ -16,7 +18,7 @@
     </div>
   </div>
     <div class="load-overlay">
-    <p class="load-overlay-container">Please Wait</span></p>
+    <p class="load-overlay-container">Please Wait</p>
   </div>
   <div class="travelData">
   </div>
@@ -25,27 +27,12 @@
 <script id="HotelHandle" type="text/x-handlebars-template">
     <div class="row title">
             <div class="col span_12">
-              <p class="mobileHide loc" data-tooltip='<spring:theme code="order.tooltip.plant" text="ExxonMobil plant product can be ordered from" />'  data-tooltip-position="left">{{plantCode}} ({{plantName}})</p>
-              <p class="mobileHide prdCode" shipToCode="{{Prdcode}}">{{shipToCode}}</p>
-              <h4><span class="prdName" data-baseUOm="{{PrdBaseUom}}" data-tooltip='<spring:theme code="tooltip.productDesc" text="Product Name and package style" />' data-tooltip-position="right">{{PrdName}}</span><br/><span><span class="desktopHide">{{Prdcode }}</span>{{PrdBaseUom}} |
-               <span class="prodType">{{prodType}}</span><span class="hidden"><span> | </span><span class="pkgType">{{packageType}}</span></span></span></span></h4>
+              <p class="hotelName">{{name}}</p>
              </div>
           </div>
           <div class="row desc">
             <div class="col span_10">
-              <p>{{PrdDescription}}</p>
+              <p>{{country}} : {{streetAddress}}</p>
             </div>
-            <div class="row">
-              <div class="col span_12">
-                <div class="tasks">
-                  <div class="left"><a class="msds links-open" href="{{msdsLink}}">MSDS</a><a href="mailto:?subject=MSDS&body={{msdsEmail}}" class="email">Email</a></div>
-                  <div class="middle"><a {{pdsLink}} class="links-open" target="_new">PDS</a><a {{pdsEmail}} class="email" >Email</a></div>
-
-                  <!--<div class="left"><span>MSDS</span><a class="msds open" href="{{msdsLink}}">Open</a></div>
-                  <div class="middle"><span>PDS</span><a {{pdsLink}} class="open" >Open</a></div>-->
-                        <sec:authorize access="hasAnyRole('ROLE_UG_ORDER_ADMIN', 'ROLE_UG_INTERNAL_ORDER_ADMIN')">
-                  <div class="right"><a href="javascript:void(0)" class="create"><spring:theme code="catalog.content.createneworder" text="Create new order" /></a></div>
-                        </sec:authorize>
-                        </div>
-                  </div></div></div>
+           
 </script>

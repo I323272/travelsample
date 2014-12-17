@@ -1,6 +1,3 @@
-var s, homePage = {
-
-	triggerActions : function(clicked) {
 		
 		$(document).ready(function(){
 			getHotels();
@@ -13,8 +10,8 @@ var s, homePage = {
 		function getHotels() {
 			$.ajax({
 				dataType : "json",
-				type : 'GET',
-				url : "http://localhost:8080/hotelsList",
+				type : 'POST',
+				url : "/hotelsList",
 				data : '',
 				contentType : "application/json; charset=utf-8",
 				success : function(data) {
@@ -69,7 +66,7 @@ var s, homePage = {
 				if (hotelJson[i].hasOwnProperty('language')) {
 					language = hotelJson[i].language;
 				}
-				if (orderJson[i].hasOwnProperty('country')) {
+				if (hotelJson[i].hasOwnProperty('country')) {
 					country = hotelJson[i].country;
 				}
 				hotelObj = {
@@ -86,12 +83,3 @@ var s, homePage = {
 			}
 			return hotel_json;
 		}
-
-	},
-
-	init : function(clicked) {
-		this.s = this.settings;
-		this.triggerActions(clicked);
-	}
-
-};
