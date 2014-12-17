@@ -24,7 +24,7 @@
 					    	  hotelRowHTMLCompiled = Handlebars.compile(hotelRowHTML);
 
 					   
-					      $.each(array, function(){
+					      $.each(array, function(i){
 					        var context = {					        		
 					        		"name" : array[i].name,
 									"language" : array[i].language,
@@ -39,7 +39,7 @@
 					        	$('.travel-screen .traveldata').append(hotelRowHTMLCompiled(context));
 					        
 					      });
-						
+					      $('.container .no-show-more').hide();
 						
 					} 
 					
@@ -78,7 +78,7 @@
 					"starRating" : hotelJson[i].starRating,
 					"streetAddress" : hotelJson[i].streetAddress
 				};
-				hotel_json.push(orderObj);
+				hotel_json.push(hotelObj);
 
 			}
 			return hotel_json;
