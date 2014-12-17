@@ -32,7 +32,9 @@
 									"latitude" : array[i].latitude,
 									"longitude" : array[i].longitude,
 									"starRating" : array[i].starRating,
-									"streetAddress" : array[i].streetAddress
+									"streetAddress" : array[i].streetAddress,
+									"hotelId": array[i].hotelId,
+									"guestRating" :array[i].guestRating
 					         
 					        };
 					        if(hotelRowHTMLCompiled)
@@ -44,12 +46,13 @@
 					} 
 					
 					else {
-						 $('.container .show-more-span').hide();
+						 $('.show-more-span').hide();
 						console.log('No Hotels available');
 						
 					}
 				},
 				error : function(error) {
+					$('.show-more-span').hide()
 					console.log(error);
 				}
 			});
@@ -71,12 +74,14 @@
 					country = hotelJson[i].country;
 				}
 				hotelObj = {
+					"hotelId":hotelJson[i].hotelId,
 					"name" : name,
 					"language" : language,
 					"country" : country,
 					"latitude" : hotelJson[i].latitude,
 					"longitude" : hotelJson[i].longitude,
 					"starRating" : hotelJson[i].starRating,
+					"guestRating" : hotelJson[i].guestRating,
 					"streetAddress" : hotelJson[i].streetAddress
 				};
 				hotel_json.push(hotelObj);

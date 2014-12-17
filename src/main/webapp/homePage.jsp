@@ -14,6 +14,9 @@
 </head>
 
 <div class="container travel travel-screen">
+	<div class="site">
+		<h1><img align="left" src="static/images/logo.png" class="logo"/><span>MyTrip</span></h1>
+	</div>
 	<div class="row top-section">
 		<div class="col span_9">
 			<h1>Travel Deals</h1>
@@ -26,30 +29,39 @@
 
 	<div class="row">
 		<div class="col span_8">
-			<div class="travelData"></div>
-		</div>
+		<div class="travelData"></div>
 		<div class="col span_12">
-			<span class="refresh show-more-span">Show more
-				products </span><span class="no-show-more">There are no more
-				products to show</span>
+			<span class="refresh show-more-span"><span></span>Show more products</span><span
+				class="no-show-more">There are no more products to show</span>
 		</div>
+	</div>
+	<div class="col span_4 sidebar">
+	<h4 class="bb">Filter</h4>
+	<div class="row title active">
+          <div class="col span_12">
+            <p>Country<span class="country"></span></p>
+          </div>
+        </div>
+        <div class="col span_12">
+            <input id="countryFilter" name="country" type="text" placeholder="Country" class="text country-search" autocomplete="off">
+          </div>
+	</div>
 	</div>
 </div>
 
 <script id="HotelHandle" type="text/x-handlebars-template">
     <div class="row title">
-      <h4>
             <div class="col span_12">
+            <p class="mobileHide loc">{{country}} : {{streetAddress}}</p>
+              <p class="mobileHide hotelId">{{hotelId}}</p>
+            <h4>
               <span class="hotelName">{{name}}</span>
+            </h4>
              </div>
             <div class="col span_10">
-              <span>{{country}} : {{streetAddress}}</span>
+             
             </div>
-            <div class="col span_10 hide">
-              <span class="latitude">Latitude :{{latitude}}</span><span class="longitude"> Longitude:{{longitude}}</span>
-                <span class="rating">Rating :{{starRating}}</span>
-            </div>
-      </h4>
+            
           </div>
            
 </script>

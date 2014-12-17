@@ -2,6 +2,7 @@ package com.travel.dto;
 
 public class Hotels {
 
+    private String hotelId;
     private float movingAverageScore;
     private float rawAppealScore;
     private float relevanceScore;
@@ -15,6 +16,19 @@ public class Hotels {
     private float totalRate;
     private float taxesAndFees;
     private String streetAddress;
+    private float guestRating;
+    public float getGuestRating() {
+        return guestRating;
+    }
+    public void setGuestRating(float guestRating) {
+        this.guestRating = guestRating;
+    }
+    public String getHotelId() {
+        return hotelId;
+    }
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
+    }
     public float getMovingAverageScore() {
         return movingAverageScore;
     }
