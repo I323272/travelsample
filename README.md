@@ -1,22 +1,29 @@
-<<<<<<< HEAD
 # java-getting-started
 
 A barebones Java app, which can easily be deployed to Heroku.  
 
-This application support the [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java) article - check it out.
-
 ## Running Locally
+Prerequisites
 
-Make sure you have Java and Maven installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+1.Create Heroku account
+2.Make sure you have Java1.7 and Maven installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+3.Set up enviornment variable for Java/bin and maven/bin path
+4.Install Git
 
+Set up
+
+Open Git Bash
 ```sh
-$ git clone https://github.com/heroku/java-getting-started.git
-$ cd java-getting-started
-$ mvn install
-$ foreman start web
+$ git clone https://github.com/nehaknp/travelsample
+$ heroku login
+Heroku Username:
+Password:
+$ cd C:\Users\<User>\travelsample
+$ mvn clean install
+$ foreman start web -f Procfile.windows
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+Your app should now be running on [localhost:8080](http://localhost:8080/).
 
 ## Deploying to Heroku
 
@@ -26,15 +33,9 @@ $ git push heroku master
 $ heroku open
 ```
 
-## Documentation
+## Commiting your code
 
-For more information about using Java on Heroku, see these Dev Center articles:
-
-- [Java on Heroku](https://devcenter.heroku.com/categories/java)
-
-=======
-travelSample
-============
-
-Hotel deals.
->>>>>>> 548b0aff7acfef30e12b0328ad407e858da948be
+$ git add .
+$ git commit -m "commit message"
+$ git push heroku master
+$ heroku open

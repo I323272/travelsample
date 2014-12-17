@@ -19,7 +19,6 @@ public class TravelDealController {
     
     @RequestMapping("/travelDeal")
     public String displayTravelDeals(final Model model){
-        getHotelsList(1,5);
 
         return "../homePage";
     }
@@ -27,12 +26,8 @@ public class TravelDealController {
     @RequestMapping("/hotelsList") 
      public List<Hotels> getHotelsList(int startIndex,int offset)
             {
-        List<Hotels> hotelsList=hotelService.getAllHotels(startIndex,offset);
-        System.out.println("hello");
-        
-        for ( Hotels t : hotelsList){
-                      System.out.println(t.getName());
-                    }
+                List<Hotels> hotelsList=hotelService.getAllHotels(startIndex,offset);
+                System.out.println("hello");
                 return hotelsList;
             }
 
