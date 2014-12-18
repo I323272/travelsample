@@ -62,7 +62,7 @@ payload.pageNo = "0";
 									"totalRate":array[i].totalRate,
 									"taxesAndFees":array[i].taxesAndFees,
 									"imageUrl":array[i].imageUrl,
-									"description":array[i].descripion
+									"description":array[i].description
 					         
 					        };
 					        if(hotelRowHTMLCompiled)

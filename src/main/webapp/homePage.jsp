@@ -68,21 +68,21 @@
             <div class="tasks">
             <div class="division">
                 <div class="left">
-                    <p class="latitude">Latitude :{{latitude}}</p>   
-                    <p class ="longitude">Longitude :{{longitude}}</p>
+                    <p class="latitude">Latitude : {{latitude}}</p>   
+                    <p class ="longitude">Longitude : {{longitude}}</p>
                 </div> 
                 <div class="middle">
-                    <p class="starRating">starRating :{{starRating}}</p>
-                    <p class="guestRating">guestRating :{{guestRating}}</p>    
+                    <p class="starRating">starRating : {{starRating}}</p>
+                    <p class="guestRating">guestRating : {{guestRating}}</p>    
                 </div>
                 <div class="right">
-                    <p class="totalRate">totalRate :{{totalRate}}</p>
-                    <p class="taxesAndFees"> taxesAndFees: {{taxesAndFees}}</p>
+                    <p class="totalRate">totalRate : {{totalRate}}</p>
+                    <p class="taxesAndFees"> taxesAndFees : {{taxesAndFees}}</p>
                 </div>
               </div>
             <div class="image">
             <img src={{imageUrl}} height="25%"></img>
-            <p>{{description}}</p>
+            <p>Description : {{description}}</p>
             </div>
             </div>
         </div>

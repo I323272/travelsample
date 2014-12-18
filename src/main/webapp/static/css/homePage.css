@@ -207,8 +207,8 @@ background: #FAFAFA;
 max-height: 0;
 overflow: hidden;
 padding: 0;
-margin-bottom: -16px;
-padding: 10px 0;
+margin-bottom: -1px;
+padding: 10px -1px;
 }
 
 .travelData .title {
