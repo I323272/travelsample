@@ -59,10 +59,7 @@ public class HotelServiceImpl implements HotelService {
                 && startLoc < hotelArray.size() - 1) {
             paginatedHotelList = new ArrayList<Hotels>();
             int noelements = hotelArray.size() - startLoc;
-            if(noelements==offset) {
-                moreResults=false;
-            }
-            else if (noelements < offset) {
+            if (noelements <= offset) {
                 offset = noelements;
                 moreResults=false;
             }
