@@ -189,6 +189,12 @@ background: #FFFFFF;
 color: #5A5A5A;
 }
 
+.travel .travelData .title.active {
+background-image: url("../images/icon-accordion-arrow.svg");
+background-repeat: no-repeat;
+background-size: 80px;
+}
+
 .travel .travelData .title+.desc {
 opacity: 0;
 padding-left: 8.125em;
@@ -213,7 +219,7 @@ padding: 10px -1px;
 
 .travelData .title {
 margin-bottom: 0;
-padding: 10px 0;
+padding: 20px 0;
 }
 
 .travel .travelData .desc p {
@@ -362,4 +368,111 @@ color: #5A5A5A;
 
 .hide {
 	display:none;
+}
+
+.division p, .hotelimage p {
+	color: rgb(99, 48, 225);
+}
+
+.tasks .hotelimage {
+	margin:15px;
+}
+
+.tasks .head span {
+	color : rgb(255, 159, 0);
+}
+
+.tasks .head {
+	font-weight:bold !important;
+}
+
+.container input {
+background: #FAFAFA;
+}
+
+input, button, .filter ul li, select {
+-webkit-appearance: none;
+border: 3px solid #D4D4D4;
+border-radius: 0;
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+color: #5A5A5A;
+display: block;
+font-family: "EMprint", Helvetica Neue, Helvetica, Arial, Lucida Grande,
+ sans-serif;
+font-size: 1em;
+font-weight: 200;
+margin-bottom: 1em;
+padding: 1em 1em;
+width: 100%;
+}
+
+button, input {
+line-height: normal;
+}
+
+button, input{
+font-size: 100%;
+margin: 0;
+vertical-align: baseline;
+}
+
+html, button, input, select {
+font-family: sans-serif;
+}
+
+h4.bb {
+border-bottom: 1px solid #D4D4D4;
+}
+
+h4 {
+font-size: 0.75em;
+font-weight: 700;
+margin-bottom: 0;
+text-transform: uppercase;
+}
+
+h4 {
+font-size: 1em;
+margin: 1.33em 0;
+}
+
+.sidebar .travelData {
+border-bottom: 0;
+}
+
+.travel .sidebar .travelData .title.active, .travel .sidebar .travelData .title.active:hover {
+background-position: right -81px;
+}
+
+.travel .sidebar .travelData .title.active {
+background: #FAFAFA;
+}
+
+.sidebar .travelData .title {
+border-top: 0;
+}
+
+.travel .sidebar .travelData .title.active+.desc {
+padding: 0;
+}
+
+a.clearFilter {
+cursor: pointer;
+}
+
+.clearFilter {
+display: none;
+margin: 6px 60px;
+float: right;
+}
+
+a {
+-ms-behavior: url(/ie/backgroundsize.min.htc);
+color: #0e68b0;
+text-decoration: none;
+}
+
+.travel .sidebar .travelData .title p {
+margin: 0.5em 0;
 }

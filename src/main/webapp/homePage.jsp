@@ -27,7 +27,7 @@
 
 	<div class="row">
 		<div class="col span_8">
-		<div class="travelData"></div>
+		<div class="travelData hotelData"></div>
 		<div class="row show-more">
 		<div class="col span_12">
 			<span class="refresh show-more-span hide"><span></span>Show more Hotels</span><span
@@ -37,16 +37,43 @@
 	</div>
 	<div class="col span_4 sidebar">
 	<h4 class="bb">Filter</h4>
+	<div class="travelData hotelFilter">
 	<div class="row title active">
           <div class="col span_12">
             <p>Country<span class="country"></span></p>
           </div>
         </div>
+     <div class="row desc">
         <div class="col span_12">
+             <a class="clearFilter">Clear Filter</a>
             <input id="countryFilter" name="country" type="text" placeholder="Country" class="text country-search" autocomplete="off">
           </div>
 	</div>
+	<div class="row title active">
+          <div class="col span_12">
+            <p>Rating<span class="rating"></span></p>
+          </div>
+     </div>
+    <div class="row desc">
+        <div class="col span_12">
+             <a class="clearFilter">Clear Filter</a>
+            <input id="ratingFilter" name="rating" type="range" min="0" max="5" step="0.1"/>
+          </div>
+    </div>
+    <div class="row title active">
+          <div class="col span_12">
+            <p>Price<span class="price"></span></p>
+          </div>
+     </div>
+    <div class="row desc">
+        <div class="col span_12">
+             <a class="clearFilter">Clear Filter</a>
+            <input id="priceFilter" name="price" type="text" placeholder="upto price" autocomplete="off"/>
+          </div>
+    </div>
 	</div>
+	</div>
+</div>
 </div>
 
 <script id="HotelHandle" type="text/x-handlebars-template">
@@ -68,21 +95,21 @@
             <div class="tasks">
             <div class="division">
                 <div class="left">
-                    <p class="latitude">Latitude : {{latitude}}</p>   
-                    <p class ="longitude">Longitude : {{longitude}}</p>
+                    <p class="head">Latitude : <span>{{latitude}}</span></p>
+                    <p class ="head">Longitude : <span> {{longitude}}</span></p>
                 </div> 
                 <div class="middle">
-                    <p class="starRating">starRating : {{starRating}}</p>
-                    <p class="guestRating">guestRating : {{guestRating}}</p>    
+                    <p class="head">starRating : <span>{{starRating}}</span></p>
+                    <p class="head">guestRating : <span>{{guestRating}}</span></p>  
                 </div>
                 <div class="right">
-                    <p class="totalRate">totalRate : {{totalRate}}</p>
-                    <p class="taxesAndFees"> taxesAndFees : {{taxesAndFees}}</p>
+                    <p class="head">totalRate : <span>{{totalRate}}</span></p>
+                    <p class="head"> taxesAndFees : <span>{{taxesAndFees}}</span></p>
                 </div>
               </div>
-            <div class="image">
+            <div class="hotelimage">
             <img src={{imageUrl}} height="25%"></img>
-            <p>Description : {{description}}</p>
+            <p class="head">Description : <span> {{description}}</span></p>
             </div>
             </div>
         </div>

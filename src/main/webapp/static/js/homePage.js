@@ -66,7 +66,7 @@ payload.pageNo = "0";
 					         
 					        };
 					        if(hotelRowHTMLCompiled)
-					        	$('.travel-screen .traveldata').append(hotelRowHTMLCompiled(context));
+					        	$('.travel-screen .hotelData').append(hotelRowHTMLCompiled(context));
 					        
 					      });
 					      
