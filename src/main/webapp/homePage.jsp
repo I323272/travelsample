@@ -4,9 +4,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-	type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="static/js/handlebars-v1.3.0.js"></script>
 <script type="text/javascript" src="/static/js/homePage.js"></script>
 <link href="static/css/homePage.css" type="text/css" rel="stylesheet" />
@@ -32,7 +30,7 @@
 		<div class="travelData"></div>
 		<div class="row show-more">
 		<div class="col span_12">
-			<span class="refresh show-more-span"><span></span>Show more Hotels</span><span
+			<span class="refresh show-more-span hide"><span></span>Show more Hotels</span><span
 				class="no-show-more">There are no more hotels to show</span>
 		</div>
 		</div>
@@ -68,18 +66,24 @@
      <div class="row">
         <div class="col span_12">
             <div class="tasks">
+            <div class="division">
                 <div class="left">
                     <p class="latitude">Latitude :{{latitude}}</p>   
                     <p class ="longitude">Longitude :{{longitude}}</p>
                 </div> 
                 <div class="middle">
                     <p class="starRating">starRating :{{starRating}}</p>
-                    <p class="guestRating">guestRating :{{guest}}</p>    
+                    <p class="guestRating">guestRating :{{guestRating}}</p>    
                 </div>
                 <div class="right">
                     <p class="totalRate">totalRate :{{totalRate}}</p>
                     <p class="taxesAndFees"> taxesAndFees: {{taxesAndFees}}</p>
                 </div>
+              </div>
+            <div class="image">
+            <img src={{imageUrl}} height="25%"></img>
+            <p>{{description}}</p>
+            </div>
             </div>
         </div>
       </div>

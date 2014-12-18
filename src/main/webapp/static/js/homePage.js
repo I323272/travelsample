@@ -18,6 +18,17 @@ payload.pageNo = "0";
 			          getHotels();
 			        },500);
 			 });
+			 
+			   $('.travelData').on('click','.row.title',function() {
+
+                   if ( $(this).hasClass('active') ) {
+                                   $(this).removeClass('active');
+                   } else {
+                                 $(this).addClass('active');                                 
+                   }
+                   
+                   $(this).next('.row.desc').toggleClass('open');
+                 });
 			
 		});
 		
@@ -47,7 +58,11 @@ payload.pageNo = "0";
 									"starRating" : array[i].starRating,
 									"streetAddress" : array[i].streetAddress,
 									"hotelId": array[i].hotelId,
-									"guestRating" :array[i].guestRating
+									"guestRating" :array[i].guestRating,
+									"totalRate":array[i].totalRate,
+									"taxesAndFees":array[i].taxesAndFees,
+									"imageUrl":array[i].imageUrl,
+									"description":array[i].descripion
 					         
 					        };
 					        if(hotelRowHTMLCompiled)
@@ -107,7 +122,11 @@ payload.pageNo = "0";
 					"longitude" : hotelJson[i].longitude,
 					"starRating" : hotelJson[i].starRating,
 					"guestRating" : hotelJson[i].guestRating,
-					"streetAddress" : hotelJson[i].streetAddress
+					"streetAddress" : hotelJson[i].streetAddress,
+					"totalRate": hotelJson[i].totalRate,
+					"taxesAndFees" : hotelJson[i].taxesAndFees,
+					"imageUrl":hotelJson[i].imageUrl,
+					"description":hotelJson[i].description
 				};
 				hotel_json.push(hotelObj);
 

@@ -207,9 +207,11 @@ background: #FAFAFA;
 max-height: 0;
 overflow: hidden;
 padding: 0;
+margin-bottom: -16px;
+padding: 10px 0;
 }
 
-.travelData .title, .travelData .desc {
+.travelData .title {
 margin-bottom: 0;
 padding: 10px 0;
 }
@@ -249,8 +251,8 @@ clear: both;
 .travel .travelData .tasks .left, .travel .travelData .tasks .middle, .travel .travelData .tasks .right {
 float: left;
 text-align: center;
-margin: 10px 0;
-width: 49%;
+margin: 15px 0;
+width: 51%;
 }
 
 .travel .travelData .tasks {
@@ -347,4 +349,17 @@ bottom: 0;
 right: 0;
 font-size: 1.3em;
 line-height: 2em;
+}
+
+.travel .travelData .title.active h4 {
+font-weight: 400;
+}
+
+.travelData .title.active {
+background: #FFFFFF;
+color: #5A5A5A;
+}
+
+.hide {
+	display:none;
 }
