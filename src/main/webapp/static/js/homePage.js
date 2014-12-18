@@ -4,13 +4,15 @@ payload.offset="8";
 payload.pageNo = "0";
 
 		$(document).ready(function(){
+			$('.show-more-span').hide();
+			$('.container .no-show-more').show();
 			getHotels();
 			 setTimeout(function() {
  				   $('.load-overlay').hide();
  		           }, 300);
 			 
 			 $('.show-more').find("span").click(function(){
-					payload.pageNo=payload.pageNo+1;
+					payload.pageNo=parseInt(payload.pageNo)+1;
 			        $('.load-overlay').show();
 			        var myVar = setTimeout(function(){
 			          getHotels();
@@ -26,9 +28,9 @@ payload.pageNo = "0";
 				data : payload,
 				cache:false,
 				success : function(data) {
-					if (data != undefined && data != null && data != '') {
+					if (data.paginatedHotelList != undefined && data.paginatedHotelList != null && data.paginatedHotelList != '') {
 						
-						var array= generateHotelJson(data),hotelRowHTML,hotelRowHTMLCompiled ;
+						var array= generateHotelJson(data.paginatedHotelList),hotelRowHTML,hotelRowHTMLCompiled ;
 						hotelRowHTML = $('#HotelHandle').html();
 						    
 					      if(hotelRowHTML)
@@ -52,7 +54,15 @@ payload.pageNo = "0";
 					        	$('.travel-screen .traveldata').append(hotelRowHTMLCompiled(context));
 					        
 					      });
-					      $('.container .no-show-more').hide();
+					      
+					      if(data.moreResults) {
+						      $('.show-more-span').show();
+						      $('.container .no-show-more').hide();
+					      }
+					      else {
+					      $('.container .no-show-more').show();
+					      $('.show-more-span').hide();
+					      }
 						
 					} 
 					
@@ -64,7 +74,12 @@ payload.pageNo = "0";
 				error : function(error) {
 					$('.show-more-span').hide()
 					console.log(error);
-				}
+				},
+				complete: function(){
+			      	  setTimeout(function() {
+			    			   $('.load-overlay').hide();
+			    	          }, 300);
+			        }
 			});
 		}
 		
@@ -99,12 +114,3 @@ payload.pageNo = "0";
 			}
 			return hotel_json;
 		}
-		
-		
-		$(".show-more .show-more-span").click(function(){
-				payload.pageNo=payload.pageNo+1;
-		        $('.load-overlay').show();
-		        var myVar = setTimeout(function(){
-		          getHotels();
-		        },500);
-});

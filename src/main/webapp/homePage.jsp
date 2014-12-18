@@ -32,8 +32,8 @@
 		<div class="travelData"></div>
 		<div class="row show-more">
 		<div class="col span_12">
-			<span class="refresh show-more-span"><span></span>Show more products</span><span
-				class="no-show-more">There are no more products to show</span>
+			<span class="refresh show-more-span"><span></span>Show more Hotels</span><span
+				class="no-show-more">There are no more hotels to show</span>
 		</div>
 		</div>
 	</div>

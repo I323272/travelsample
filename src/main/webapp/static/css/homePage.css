@@ -328,3 +328,23 @@ p {
 color: #5A5A5A;
 margin: 1em 0;
 }
+
+.load-overlay-container span {
+background-image: url("../images/icon-loading.svg");
+background-position: left top;
+background-repeat: no-repeat;
+background-size: 2em;
+width: 200px;
+margin: auto;
+overflow: auto;
+padding-left: 2.5em;
+display: table;
+height: auto;
+position: fixed;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+font-size: 1.3em;
+line-height: 2em;
+}

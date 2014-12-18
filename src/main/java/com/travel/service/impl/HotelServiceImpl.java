@@ -15,54 +15,65 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import com.travel.dto.HotelListData;
 import com.travel.dto.Hotels;
 import com.travel.service.HotelService;
 
-@Component(value="hotelService")
-public class HotelServiceImpl implements HotelService{
-    
-    private static List<Hotels> hotelArray=null;
+@Component(value = "hotelService")
+public class HotelServiceImpl implements HotelService {
+
+    private static List<Hotels> hotelArray = null;
     private static final String jsonFilePath = "http://deals.expedia.com/beta/deals/hotels.json";
 
     static {
         try {
-        JsonReader reader = new JsonReader(
-          new InputStreamReader(new URL(jsonFilePath).openStream(),"UTF-8"));
-        JsonArray userArray =  new JsonParser().parse(reader).getAsJsonArray();
-        if(userArray!=null && userArray.isJsonArray()) {
-            hotelArray=new ArrayList<Hotels>();
-        for ( JsonElement aUser : userArray ){
-                      Hotels hotels = new Gson().fromJson(aUser, Hotels.class);
-                      hotelArray.add(hotels);
-                    }
-        }
-           
-                }catch(FileNotFoundException e) {
-                    hotelArray=null;
-                    e.printStackTrace();
-                }catch (IOException e) {
-                    hotelArray=null;
-                    e.printStackTrace();
+            JsonReader reader = new JsonReader(new InputStreamReader(new URL(
+                    jsonFilePath).openStream(), "UTF-8"));
+            JsonArray userArray = new JsonParser().parse(reader)
+                    .getAsJsonArray();
+            if (userArray != null && userArray.isJsonArray()) {
+                hotelArray = new ArrayList<Hotels>();
+                for (JsonElement aUser : userArray) {
+                    Hotels hotels = new Gson().fromJson(aUser, Hotels.class);
+                    hotelArray.add(hotels);
                 }
+            }
+
+        } catch (FileNotFoundException e) {
+            hotelArray = null;
+            e.printStackTrace();
+        } catch (IOException e) {
+            hotelArray = null;
+            e.printStackTrace();
+        }
 
     }
-    
+
     @Override
-    public List<Hotels> getAllHotels(int startIndex,int offset) {
-        List<Hotels> paginatedHotelList=new ArrayList<Hotels>();
-        int startloc=startIndex*offset;
-        if(hotelArray==null || hotelArray.isEmpty()|| startloc >= hotelArray.size()-1) {
-            return Collections.emptyList();
+    public HotelListData getAllHotels(int pageNo, int offset) {
+        boolean moreResults = true;
+        HotelListData hotelListData = new HotelListData();
+        List<Hotels> paginatedHotelList = Collections.emptyList();
+        int startLoc = pageNo * offset;
+        if (hotelArray != null && !hotelArray.isEmpty()
+                && startLoc < hotelArray.size() - 1) {
+            paginatedHotelList = new ArrayList<Hotels>();
+            int noelements = hotelArray.size() - startLoc;
+            if(noelements==offset) {
+                moreResults=false;
+            }
+            else if (noelements < offset) {
+                offset = noelements;
+                moreResults=false;
+            }
+            for (int i = 0; i < offset; i++) {
+                paginatedHotelList.add(hotelArray.get(startLoc+ i));
+            }
         }
-        int noelements=(hotelArray.size()-1)-startloc;
-        if(noelements<offset) {
-            offset=noelements;
-        }
-        for(int i=0;i<offset;i++) {
-            paginatedHotelList.add(hotelArray.get((startloc)+i));
-        }
-        
-        return paginatedHotelList;
+        hotelListData.setPaginatedHotelList(paginatedHotelList);
+        hotelListData.setMoreResults(moreResults);
+
+        return hotelListData;
     }
 
 }

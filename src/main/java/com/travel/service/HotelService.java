@@ -1,10 +1,8 @@
 package com.travel.service;
 
-import java.util.List;
-
-import com.travel.dto.Hotels;
+import com.travel.dto.HotelListData;
 
 public interface HotelService {
 
-    public List<Hotels> getAllHotels(int startIndex,int offset);
+    public HotelListData getAllHotels(int startIndex,int offset);
 }
