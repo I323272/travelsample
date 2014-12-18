@@ -185,12 +185,12 @@ cursor: hand;
 
 .travel .travelData .title.active {
 background-position-x: 100% !important;
-background: #FFFFFF;
 color: #5A5A5A;
+background : #FFFFFF;
 }
 
 .travel .travelData .title.active {
-background-image: url("../images/icon-accordion-arrow.svg");
+background-image: url("../images/icon-accordion-arrow.svg") !important;
 background-repeat: no-repeat;
 background-size: 80px;
 }
@@ -362,7 +362,6 @@ font-weight: 400;
 }
 
 .travelData .title.active {
-background: #FFFFFF;
 color: #5A5A5A;
 }
 
@@ -443,10 +442,6 @@ border-bottom: 0;
 
 .travel .sidebar .travelData .title.active, .travel .sidebar .travelData .title.active:hover {
 background-position: right -81px;
-}
-
-.travel .sidebar .travelData .title.active {
-background: #FAFAFA;
 }
 
 .sidebar .travelData .title {

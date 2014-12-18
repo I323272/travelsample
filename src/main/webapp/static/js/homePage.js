@@ -24,7 +24,7 @@ payload.pageNo = "0";
                    if ( $(this).hasClass('active') ) {
                                    $(this).removeClass('active');
                    } else {
-                                 $(this).addClass('active');                                 
+                                 $(this).addClass('active');
                    }
                    
                    $(this).next('.row.desc').toggleClass('open');

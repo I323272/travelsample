@@ -43,7 +43,7 @@
             <p>Country<span class="country"></span></p>
           </div>
         </div>
-     <div class="row desc">
+     <div class="row desc open">
         <div class="col span_12">
              <a class="clearFilter">Clear Filter</a>
             <input id="countryFilter" name="country" type="text" placeholder="Country" class="text country-search" autocomplete="off">
@@ -54,7 +54,7 @@
             <p>Rating<span class="rating"></span></p>
           </div>
      </div>
-    <div class="row desc">
+    <div class="row desc open">
         <div class="col span_12">
              <a class="clearFilter">Clear Filter</a>
             <input id="ratingFilter" name="rating" type="range" min="0" max="5" step="0.1"/>
@@ -65,7 +65,7 @@
             <p>Price<span class="price"></span></p>
           </div>
      </div>
-    <div class="row desc">
+    <div class="row desc open">
         <div class="col span_12">
              <a class="clearFilter">Clear Filter</a>
             <input id="priceFilter" name="price" type="text" placeholder="upto price" autocomplete="off"/>
