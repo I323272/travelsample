@@ -8,6 +8,14 @@ payload.pageNo = "0";
 			 setTimeout(function() {
  				   $('.load-overlay').hide();
  		           }, 300);
+			 
+			 $('.show-more').find("span").click(function(){
+					payload.pageNo=payload.pageNo+1;
+			        $('.load-overlay').show();
+			        var myVar = setTimeout(function(){
+			          getHotels();
+			        },500);
+			 });
 			
 		});
 		
@@ -50,8 +58,7 @@ payload.pageNo = "0";
 					
 					else {
 						 $('.show-more-span').hide();
-						console.log('No Hotels available');
-						
+						 $('.container .no-show-more').show();
 					}
 				},
 				error : function(error) {
@@ -93,8 +100,9 @@ payload.pageNo = "0";
 			return hotel_json;
 		}
 		
-$('.travelData .show-more-span').on('click',function(){
-				payload.pageNo=payload.pageNo++;
+		
+		$(".show-more .show-more-span").click(function(){
+				payload.pageNo=payload.pageNo+1;
 		        $('.load-overlay').show();
 		        var myVar = setTimeout(function(){
 		          getHotels();

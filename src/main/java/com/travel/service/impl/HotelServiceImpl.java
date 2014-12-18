@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -20,7 +21,7 @@ import com.travel.service.HotelService;
 @Component(value="hotelService")
 public class HotelServiceImpl implements HotelService{
     
-    private static List<Hotels> hotelArray=new ArrayList<Hotels>();
+    private static List<Hotels> hotelArray=null;
     private static final String jsonFilePath = "http://deals.expedia.com/beta/deals/hotels.json";
 
     static {
@@ -28,14 +29,19 @@ public class HotelServiceImpl implements HotelService{
         JsonReader reader = new JsonReader(
           new InputStreamReader(new URL(jsonFilePath).openStream(),"UTF-8"));
         JsonArray userArray =  new JsonParser().parse(reader).getAsJsonArray();
+        if(userArray!=null && userArray.isJsonArray()) {
+            hotelArray=new ArrayList<Hotels>();
         for ( JsonElement aUser : userArray ){
                       Hotels hotels = new Gson().fromJson(aUser, Hotels.class);
                       hotelArray.add(hotels);
                     }
+        }
            
                 }catch(FileNotFoundException e) {
+                    hotelArray=null;
                     e.printStackTrace();
                 }catch (IOException e) {
+                    hotelArray=null;
                     e.printStackTrace();
                 }
 
@@ -44,9 +50,16 @@ public class HotelServiceImpl implements HotelService{
     @Override
     public List<Hotels> getAllHotels(int startIndex,int offset) {
         List<Hotels> paginatedHotelList=new ArrayList<Hotels>();
-        
+        int startloc=startIndex*offset;
+        if(hotelArray==null || hotelArray.isEmpty()|| startloc >= hotelArray.size()-1) {
+            return Collections.emptyList();
+        }
+        int noelements=(hotelArray.size()-1)-startloc;
+        if(noelements<offset) {
+            offset=noelements;
+        }
         for(int i=0;i<offset;i++) {
-            paginatedHotelList.add(hotelArray.get((startIndex*offset)+i));
+            paginatedHotelList.add(hotelArray.get((startloc)+i));
         }
         
         return paginatedHotelList;

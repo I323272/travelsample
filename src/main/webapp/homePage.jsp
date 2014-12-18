@@ -24,15 +24,17 @@
 	</div>
 
 	<div class="load-overlay">
-		<p class="load-overlay-container">Please Wait</p>
+		<p class="load-overlay-container"><span>Please Wait</span></p>
 	</div>
 
 	<div class="row">
 		<div class="col span_8">
 		<div class="travelData"></div>
+		<div class="row show-more">
 		<div class="col span_12">
 			<span class="refresh show-more-span"><span></span>Show more products</span><span
 				class="no-show-more">There are no more products to show</span>
+		</div>
 		</div>
 	</div>
 	<div class="col span_4 sidebar">
