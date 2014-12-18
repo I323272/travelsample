@@ -167,3 +167,110 @@ width: 100%;
 .travelData {
 	border-bottom: 1px solid #E7E5E4;
 }
+
+.travelData .title:hover,.travelData .desc:hover {
+cursor: pointer;
+cursor: hand;
+background-color: #FFFFFF;
+}
+
+.travel .travelData .title.active:hover {
+background-image: url("../images/icon-accordion-arrow.svg");
+background-position: right -76px;
+background-repeat: no-repeat;
+background-size: 80px;
+cursor: pointer;
+cursor: hand;
+}
+
+.travel .travelData .title.active {
+background-position-x: 100% !important;
+background: #FFFFFF;
+color: #5A5A5A;
+}
+
+.travel .travelData .title+.desc {
+opacity: 0;
+padding-left: 8.125em;
+}
+
+.travel .travelData .desc {
+box-shadow: none;
+}
+
+.travelData .desc {
+-webkit-transition: all, 300ms;
+-moz-transition: all, 300ms;
+transition: all, 300ms;
+box-shadow: inset 0 0 0 0 #999999, inset 0 -8px 10px -10px #999999;
+background: #FAFAFA;
+max-height: 0;
+overflow: hidden;
+padding: 0;
+}
+
+.travelData .title, .travelData .desc {
+margin-bottom: 0;
+padding: 10px 0;
+}
+
+.travel .travelData .desc p {
+margin-bottom: 1em;
+margin-top: 0;
+}
+
+.travelData .desc p {
+font-weight: 200;
+margin-bottom: 0;
+}
+
+p, label, em {
+color: #5A5A5A;
+}
+
+.row {
+margin-bottom: 1em;
+}
+
+.span_12 {
+margin-left: 0;
+width: 100%;
+}
+
+.travel .travelData .tasks:before, .travel .travelData .tasks:after {
+content: " ";
+display: table;
+}
+
+.travel .travelData .tasks:after {
+clear: both;
+}
+
+.travel .travelData .tasks .left, .travel .travelData .tasks .middle, .travel .travelData .tasks .right {
+float: left;
+text-align: center;
+margin: 10px 0;
+width: 49%;
+}
+
+.travel .travelData .tasks {
+border-top: 1px solid #D4D4D4;
+margin-bottom: -2em;
+color: #757575;
+}
+
+.travel .travelData .title.active+.desc {
+opacity: 1;
+padding-left: 5.125em;
+}
+
+.travel .travelData .title.active+.desc {
+overflow: visible;
+padding: 1em 0;
+}
+
+.travelData .title.active+.desc {
+background: #FFFFFF;
+max-height: 1000px;
+padding: 0 0 2em;
+}

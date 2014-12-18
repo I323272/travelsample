@@ -2,6 +2,8 @@ package com.travel.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,11 +28,11 @@ public class TravelDealController {
     
     @ResponseBody
     @RequestMapping(value="/hotelsList", method = RequestMethod.POST) 
-     public List<Hotels> getHotelsList() {
-     int pageNo=1;
-    int offset=8;
+     public List<Hotels> getHotelsList(HttpServletRequest request) {
+        System.out.println(request.getParameter("pageNo"));
+                int pageNo=Integer.parseInt(request.getParameter("pageNo"));
+                int offset=Integer.parseInt(request.getParameter("offset"));
                 List<Hotels> hotelsList=hotelService.getAllHotels(pageNo,offset);
-                System.out.println("hotelsList");
                 return hotelsList;
             }
 

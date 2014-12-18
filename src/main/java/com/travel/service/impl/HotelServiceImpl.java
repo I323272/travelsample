@@ -1,7 +1,5 @@
 package com.travel.service.impl;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -48,7 +46,7 @@ public class HotelServiceImpl implements HotelService{
         List<Hotels> paginatedHotelList=new ArrayList<Hotels>();
         
         for(int i=0;i<offset;i++) {
-            paginatedHotelList.add(hotelArray.get(((startIndex-1)*offset)+i));
+            paginatedHotelList.add(hotelArray.get((startIndex*offset)+i));
         }
         
         return paginatedHotelList;

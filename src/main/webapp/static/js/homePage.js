@@ -1,4 +1,8 @@
-		
+
+var payload={};
+payload.offset="8";
+payload.pageNo = "0";
+
 		$(document).ready(function(){
 			getHotels();
 			 setTimeout(function() {
@@ -9,11 +13,10 @@
 		
 		function getHotels() {
 			$.ajax({
-				dataType : "json",
-				type : 'POST',
+				type : "POST",
 				url : "/hotelsList",
-				data : '',
-				contentType : "application/json; charset=utf-8",
+				data : payload,
+				cache:false,
 				success : function(data) {
 					if (data != undefined && data != null && data != '') {
 						
@@ -89,3 +92,11 @@
 			}
 			return hotel_json;
 		}
+		
+$('.travelData .show-more-span').on('click',function(){
+				payload.pageNo=payload.pageNo++;
+		        $('.load-overlay').show();
+		        var myVar = setTimeout(function(){
+		          getHotels();
+		        },500);
+});

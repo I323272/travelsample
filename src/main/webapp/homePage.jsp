@@ -58,10 +58,29 @@
               <span class="hotelName">{{name}}</span>
             </h4>
              </div>
+     </div>
+     <div class="row desc">
             <div class="col span_10">
-             
+             <p></p>
             </div>
-            
-          </div>
+     <div class="row">
+        <div class="col span_12">
+            <div class="tasks">
+                <div class="left">
+                    <p class="latitude">Latitude :{{latitude}}</p>   
+                    <p class ="longitude">Longitude :{{longitude}}</p>
+                </div> 
+                <div class="middle">
+                    <p class="starRating">starRating :{{starRating}}</p>
+                    <p class="guestRating">guestRating :{{guest}}</p>    
+                </div>
+                <div class="right">
+                    <p class="totalRate">totalRate :{{totalRate}}</p>
+                    <p class="taxesAndFees"> taxesAndFees: {{taxesAndFees}}</p>
+                </div>
+            </div>
+        </div>
+      </div>
+     </div>
            
 </script>
