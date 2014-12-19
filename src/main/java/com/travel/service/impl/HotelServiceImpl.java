@@ -23,6 +23,7 @@ import com.travel.service.HotelService;
 public class HotelServiceImpl implements HotelService {
 
     private static List<Hotels> hotelArray = null;
+    private static List<Hotels> filteredList=null;
     private static final String jsonFilePath = "http://deals.expedia.com/beta/deals/hotels.json";
 
     static {

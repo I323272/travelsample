@@ -52,7 +52,7 @@ payload.pageNo = "0";
 					        var context = {					        		
 					        		"name" : array[i].name,
 									"language" : array[i].language,
-									"country" : array[i].country,
+									"destination" : array[i].destination,
 									"latitude" : array[i].latitude,
 									"longitude" : array[i].longitude,
 									"starRating" : array[i].starRating,
@@ -62,7 +62,9 @@ payload.pageNo = "0";
 									"totalRate":array[i].totalRate,
 									"taxesAndFees":array[i].taxesAndFees,
 									"imageUrl":array[i].imageUrl,
-									"description":array[i].description
+									"description":array[i].description,
+									"currency":array[i].currency,
+									"dealDeepLink":array[i].dealDeepLink
 					         
 					        };
 					        if(hotelRowHTMLCompiled)
@@ -103,21 +105,23 @@ payload.pageNo = "0";
 			var hotel_json = [];
 
 			for ( var i in hotelJson) {
-				var name = '', language = '', country = '';
+				var name = '', language = '', country = '',dealDeepLink='#';
 				if (hotelJson[i].hasOwnProperty('name')) {
 					name = hotelJson[i].name;
 				}
 				if (hotelJson[i].hasOwnProperty('language')) {
 					language = hotelJson[i].language;
 				}
-				if (hotelJson[i].hasOwnProperty('country')) {
-					country = hotelJson[i].country;
+				
+				if(hotelJson[i].hasOwnProperty('dealDeepLink')) {
+					dealDeepLink=decodeURIComponent(hotelJson[i].dealDeepLink);
 				}
+				
 				hotelObj = {
 					"hotelId":hotelJson[i].hotelId,
 					"name" : name,
 					"language" : language,
-					"country" : country,
+					"destination" : hotelJson[i].destination,
 					"latitude" : hotelJson[i].latitude,
 					"longitude" : hotelJson[i].longitude,
 					"starRating" : hotelJson[i].starRating,
@@ -126,7 +130,9 @@ payload.pageNo = "0";
 					"totalRate": hotelJson[i].totalRate,
 					"taxesAndFees" : hotelJson[i].taxesAndFees,
 					"imageUrl":hotelJson[i].imageUrl,
-					"description":hotelJson[i].description
+					"description":hotelJson[i].description,
+					"currency":hotelJson[i].currency,
+					"dealDeepLink":dealDeepLink
 				};
 				hotel_json.push(hotelObj);
 

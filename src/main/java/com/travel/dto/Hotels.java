@@ -19,6 +19,27 @@ public class Hotels {
     private float guestRating;
     private String imageUrl;
     private String description;
+    private String destination;
+    private String city;
+    private String dealDeepLink;
+    public String getDealDeepLink() {
+        return dealDeepLink;
+    }
+    public void setDealDeepLink(String dealDeepLink) {
+        this.dealDeepLink = dealDeepLink;
+    }
+    public String getDestination() {
+        return destination;
+    }
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+    public String getCity() {
+        return city;
+    }
+    public void setCity(String city) {
+        this.city = city;
+    }
     public String getDescription() {
         return description;
     }

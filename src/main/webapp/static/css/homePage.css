@@ -174,14 +174,14 @@ cursor: hand;
 background-color: #FFFFFF;
 }
 
-.travel .travelData .title.active:hover {
+/* .travel .travelData .title.active:hover {
 background-image: url("../images/icon-accordion-arrow.svg");
 background-position: right -76px;
 background-repeat: no-repeat;
 background-size: 80px;
 cursor: pointer;
 cursor: hand;
-}
+} */
 
 .travel .travelData .title.active {
 background-position-x: 100% !important;
@@ -265,6 +265,7 @@ width: 51%;
 border-top: 1px solid #D4D4D4;
 margin-bottom: -2em;
 color: #757575;
+cursor:default;
 }
 
 .travel .travelData .title.active+.desc {
@@ -450,6 +451,7 @@ border-top: 0;
 
 .travel .sidebar .travelData .title.active+.desc {
 padding: 0;
+background:transparent;
 }
 
 a.clearFilter {
@@ -470,4 +472,27 @@ text-decoration: none;
 
 .travel .sidebar .travelData .title p {
 margin: 0.5em 0;
+}
+
+.travelData.hotelFilter .title,.travelData.hotelFilter .title.active {
+background-color: transparent;
+}
+
+.container .heading {
+	padding-left: 703px;
+}
+
+.travel .hotelFilter #rating,.travel .hotelFilter #latitude,.travel .hotelFilter #longitude {
+	border:0; 
+	color:#f6931f; 
+	font-weight:bold;
+}
+
+input#rating,input#latitude,input#longitude {
+	display: inline-block;
+    width: 57%;
+}
+
+.sliderContainer label {
+	color:red;
 }
