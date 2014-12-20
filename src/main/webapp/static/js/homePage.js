@@ -1,6 +1,5 @@
 
 var filter=false;
-var emptyString=true;
 var payload={};
 payload.offset="8";
 payload.pageNo = "0";
@@ -39,17 +38,17 @@ payload.pageNo = "0";
 				   		
 				   		if(payload.data==undefined ||payload.data==null || payload.data=='') {
 				   			payload.data='';
-				   			emptyString=true;
+				   			filter = filter || false;
 				   		}
 				   		else {
 					   		filter=true;
-					   		emptyString=false;
 					   		}
-				   		if(emptyString==true) {
-				   			filter=false;				   			
-				   		}
 				   		payload.filter=filter;
-				   		getHotels();
+				   		payload.pageNo = "0";
+				   		$('.load-overlay').show();
+				        var myVar = setTimeout(function(){
+				          getHotels();
+				        },500);
 			    });
 			
 		});
@@ -61,6 +60,7 @@ payload.pageNo = "0";
 				data : payload,
 				cache:false,
 				success : function(data) {
+					$('.travel-screen .hotelData').html('');
 					if (data.paginatedHotelList != undefined && data.paginatedHotelList != null && data.paginatedHotelList != '') {
 						
 						var array= generateHotelJson(data.paginatedHotelList),hotelRowHTML,hotelRowHTMLCompiled ;

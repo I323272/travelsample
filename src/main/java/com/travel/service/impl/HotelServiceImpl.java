@@ -61,7 +61,7 @@ public class HotelServiceImpl implements HotelService {
         List<Hotels> paginatedHotelList = Collections.emptyList();
         int startLoc = pageNo * offset;
         if (filteredList != null && !filteredList.isEmpty()
-                && startLoc < filteredList.size() - 1) {
+                && startLoc <= filteredList.size() - 1) {
             paginatedHotelList = new ArrayList<Hotels>();
             int noelements = filteredList.size() - startLoc;
             if (noelements <= offset) {
@@ -86,22 +86,29 @@ public class HotelServiceImpl implements HotelService {
         if (!filter) {
             filteredList = hotelArray;
         } else {
-            List<Hotels> list=new ArrayList<Hotels>();
-            if (null != filteredList && !filteredList.isEmpty()) {
-                for (int i = 0; i < filteredList.size(); i++) {
+            System.out.println(data);
+            for (int i = 0; i < filteredList.size(); i++) {
+                System.out.println("filteredList:"+filteredList.get(i).getTotalRate());
+            }
+                List<Hotels> list=new ArrayList<Hotels>();
+                for (int i = 0; i < hotelArray.size(); i++) {
                     try {
-                        if (StringUtils.containsIgnoreCase((String)(PropertyUtils.getProperty(filteredList.get(i), param)), data)){
-                            list.add(filteredList.get(i));
+                        if(param.equalsIgnoreCase("city")) {
+                        if (StringUtils.containsIgnoreCase((String)(PropertyUtils.getProperty(hotelArray.get(i), param)), data)){
+                            list.add(hotelArray.get(i));
+                        }
+                        }
+                        else {
+                            if((Float)(PropertyUtils.getProperty(hotelArray.get(i), param))<=Float.parseFloat(data)) {
+                                list.add(hotelArray.get(i));
+                            }
                         }
                     } catch (IllegalAccessException | InvocationTargetException
                             | NoSuchMethodException e) {
                         e.printStackTrace();
                     }
-                }
                 filteredList=list;
-            }
-            for (int i = 0; i < filteredList.size(); i++) {
-               System.out.println(filteredList.get(i).getCity());
+                //filteredList.retainAll(list);
             }
         }
         HotelListData hotelListData = getAllHotels(pageNo, offset);

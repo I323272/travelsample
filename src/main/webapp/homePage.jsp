@@ -88,7 +88,7 @@
 				</div>
 				<div class="row desc open">
 					<div class="col span_12">
-						<a class="clearFilter">Clear Filter</a> <input id="priceFilter"
+						<a class="clearFilter">Clear Filter</a> <input id="totalRateFilter"
 							name="price" type="text" placeholder="upto value"
 							autocomplete="off" />
 					</div>
@@ -137,7 +137,7 @@
 <script id="HotelHandle" type="text/x-handlebars-template">
     <div class="row title">
             <div class="col span_12">
-            <p class="mobileHide loc">{{destination}} : {{streetAddress}}</p>
+            <p class="mobileHide loc">{{city}} : {{streetAddress}}</p>
               <p class="mobileHide hotelId">{{hotelId}}</p>
             <h4>
               <span class="hotelName">{{name}}</span>
