@@ -1,4 +1,6 @@
 
+var filter=false;
+var emptyString=true;
 var payload={};
 payload.offset="8";
 payload.pageNo = "0";
@@ -29,13 +31,33 @@ payload.pageNo = "0";
                    
                    $(this).next('.row.desc').toggleClass('open');
                  });
+			   
+			   $('input[type="text"]').on('input',function(event) {
+				   		var ele=$(this).attr('id');
+				   		payload.param=ele.split('Filter')[0];
+				   		payload.data=$('#'+ele).val();
+				   		
+				   		if(payload.data==undefined ||payload.data==null || payload.data=='') {
+				   			payload.data='';
+				   			emptyString=true;
+				   		}
+				   		else {
+					   		filter=true;
+					   		emptyString=false;
+					   		}
+				   		if(emptyString==true) {
+				   			filter=false;				   			
+				   		}
+				   		payload.filter=filter;
+				   		getHotels();
+			    });
 			
 		});
 		
 		function getHotels() {
 			$.ajax({
 				type : "POST",
-				url : "/hotelsList",
+				url : "/filter",
 				data : payload,
 				cache:false,
 				success : function(data) {

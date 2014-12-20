@@ -57,8 +57,8 @@
 				</div>
 				<div class="row desc open">
 					<div class="col span_12">
-						<a class="clearFilter">Clear Filter</a> <input id="cityFilter"
-							name="city" type="text" placeholder="city" autocomplete="off">
+						<a class="clearFilter">Clear Filter</a> 
+						<input id="cityFilter" name="city" type="text" placeholder="city" autocomplete="off">
 					</div>
 				</div>
 				<div class="row title active">
