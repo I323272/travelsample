@@ -21,12 +21,13 @@ import com.travel.dto.Hotels;
 import com.travel.service.HotelService;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang3.StringUtils;
 
 @Component(value = "hotelService")
 public class HotelServiceImpl implements HotelService {
 
     private static List<Hotels> hotelArray = null;
-    private static List<Hotels> filteredList = hotelArray;
+    private List<Hotels> filteredList = hotelArray;
     private static final String jsonFilePath = "http://deals.expedia.com/beta/deals/hotels.json";
 
     static {
@@ -85,18 +86,22 @@ public class HotelServiceImpl implements HotelService {
         if (!filter) {
             filteredList = hotelArray;
         } else {
+            List<Hotels> list=new ArrayList<Hotels>();
             if (null != filteredList && !filteredList.isEmpty()) {
                 for (int i = 0; i < filteredList.size(); i++) {
-                    System.out.println("data"+data);
                     try {
-                        if (! ((String)(PropertyUtils.getProperty(filteredList.get(i), param))).contains(data)) {
-                            filteredList.remove(i);
+                        if (StringUtils.containsIgnoreCase((String)(PropertyUtils.getProperty(filteredList.get(i), param)), data)){
+                            list.add(filteredList.get(i));
                         }
                     } catch (IllegalAccessException | InvocationTargetException
                             | NoSuchMethodException e) {
                         e.printStackTrace();
                     }
                 }
+                filteredList=list;
+            }
+            for (int i = 0; i < filteredList.size(); i++) {
+               System.out.println(filteredList.get(i).getCity());
             }
         }
         HotelListData hotelListData = getAllHotels(pageNo, offset);
