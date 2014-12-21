@@ -26,19 +26,6 @@ public class TravelDealController {
         return "/homePage";
     }
 
-    /*
-     * @ResponseBody
-     * 
-     * @RequestMapping(value = "/hotelsList", method = RequestMethod.POST)
-     * public HotelListData getHotelsList(
-     * 
-     * @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
-     * 
-     * @RequestParam(value = "offset", defaultValue = "8") int offset) {
-     * HotelListData hotelsData = hotelService.getAllHotels(pageNo, offset);
-     * return hotelsData; }
-     */
-
     @ResponseBody
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public HotelListData getFilteredData(HttpServletRequest request) {

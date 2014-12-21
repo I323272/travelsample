@@ -15,12 +15,12 @@ var params;
 		        });
 			$('.show-more-span').hide();
 			$('.container .no-show-more').show();
-			getHotels();
+			 getHotels();
 			 setTimeout(function() {
  				   $('.load-overlay').hide();
  		           }, 300);
 			 
-			 $('.show-more').find("span").click(function(){
+			 $('.show-more .show-more-span').click(function(){
 					pageNo=parseInt(pageNo)+1;
 			        $('.load-overlay').show();
 			        var myVar = setTimeout(function(){

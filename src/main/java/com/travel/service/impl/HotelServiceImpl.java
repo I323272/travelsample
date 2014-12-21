@@ -28,8 +28,8 @@ public class HotelServiceImpl implements HotelService {
 
     private static List<Hotels> hotelArray = null;
     private List<Hotels> filteredList = new ArrayList<Hotels>();
-    private List<Hotels> cityList=null;
-    private List<Hotels> priceList=null;
+    private List<Hotels> list1=new ArrayList<Hotels>();
+    private List<Hotels> list2=new ArrayList<Hotels>();
     private static final String jsonFilePath = "http://deals.expedia.com/beta/deals/hotels.json";
 
     static {
@@ -47,10 +47,10 @@ public class HotelServiceImpl implements HotelService {
             }
 
         } catch (FileNotFoundException e) {
-            hotelArray = null;
+            hotelArray = Collections.emptyList();
             e.printStackTrace();
         } catch (IOException e) {
-            hotelArray = null;
+            hotelArray = Collections.emptyList();
             e.printStackTrace();
         }
 
@@ -86,20 +86,25 @@ public class HotelServiceImpl implements HotelService {
     public HotelListData getFilteredData(boolean filter, Map<String,String> param, int pageNo, int offset) {
         if(pageNo==0) {
         if (!filter) {
-            if(filteredList!=null) {
                 filteredList.clear();
-            }
             filteredList.addAll(hotelArray);
         }
         else {
-               cityList=getCityFilteredList(param.get("city"));
-               System.out.println(cityList.size());
-               priceList=getPriceFilteredList(param.get("price"));
-               System.out.println(priceList.size());
-               cityList.retainAll(priceList);
-               System.out.println(cityList.size());
-               Set<Hotels> filteredSet = new HashSet<Hotels>(cityList);
+                list1.clear();
+                list2.clear();
+               list1.addAll(getCityFilteredList(param.get("city")));
+               System.out.println(list1.size());
+               list2.addAll(getPriceFilteredList(param.get("price")));
+               System.out.println(list2.size());
+               list1.retainAll(list2);
+               list2.clear();
+               System.out.println(list1.size());
+               list2=getRatingFilteredList(param.get("ratingmin"),param.get("ratingmax"));
+               list1.retainAll(list2);
+               Set<Hotels> filteredSet = new HashSet<Hotels>(list1);
+               if(filteredList!=null) {
                filteredList.clear();
+               }
                filteredList.addAll(filteredSet);
         }
         }
@@ -127,6 +132,20 @@ public class HotelServiceImpl implements HotelService {
         }
         for (int i = 0; i < hotelArray.size(); i++) {
             if(hotelArray.get(i).getTotalRate()<=Float.parseFloat(data)) {
+                list.add(hotelArray.get(i));
+        }
+    }
+        return list;
+
+}
+    
+    private List<Hotels> getRatingFilteredList(String min,String max) {
+        List<Hotels> list=new ArrayList<Hotels>();
+        if(StringUtils.isEmpty(min) && StringUtils.isEmpty(max)) {
+            return hotelArray;
+        }
+        for (int i = 0; i < hotelArray.size(); i++) {
+            if(hotelArray.get(i).getGuestRating()>=Float.parseFloat(min) && hotelArray.get(i).getGuestRating()<=Float.parseFloat(max)) {
                 list.add(hotelArray.get(i));
         }
     }

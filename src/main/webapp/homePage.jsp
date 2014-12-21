@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="static/js/handlebars-v1.3.0.js"></script>
+<script type="text/javascript" src="/static/js/handlebars-v1.3.0.js"></script>
 <script type="text/javascript" src="/static/js/homePage.js"></script>
 <link href="static/css/homePage.css" type="text/css" rel="stylesheet" />
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-<script src="/static/js/jquery-1.11.2.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.5.min.css" />
+<script type="text/javascript" src="/static/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.mobile-1.4.5.min.js"></script>
 
 <title>TravelDeals</title>
 </head>
@@ -71,10 +71,10 @@
 					<div class="col span_12 sliderContainer">
 						<a class="clearFilter">Clear Filter</a>
 					<div data-role="rangeslider" data-track-theme="b" data-theme="a">
-                        <label for="range-3a"></label>
-                        <input type="range" name="range-3a" id="range-3a" min="0" step=0.1 max="5" value="0">
-                        <label for="range-3b"></label>
-                        <input type="range" name="range-3b" id="range-3b" min="0" step=0.1 max="5" value="5">
+                        <label for="ratingmin"></label>
+                        <input type="range" name="ratingmin" id="ratingmin" min="0" step=0.1 max="5" value="0">
+                        <label for="ratingmax"></label>
+                        <input type="range" name="ratingmax" id="ratingmax" min="0" step=0.1 max="5" value="5">
                     </div>
 					</div>
 				</div>
@@ -103,10 +103,10 @@
 					<div class="col span_12 sliderContainer">
 						<a class="clearFilter">Clear Filter</a>
 						<div data-role="rangeslider" data-track-theme="b" data-theme="a">
-                        <label for="range-3a"></label>
-                        <input type="range" name="range-3a" id="range-3a" min="-85" step=0.01 max="85" value="-85">
-                        <label for="range-3b"></label>
-                        <input type="range" name="range-3b" id="range-3b" min="-85" step=0.01 max="85" value="85">
+                        <label for="latitudemin"></label>
+                        <input type="range" name="latitudemin" id="latitudemin" min="-85" step=0.01 max="85" value="-85">
+                        <label for="latitudemax"></label>
+                        <input type="range" name="latitudemax" id="latitudemax" min="-85" step=0.01 max="85" value="85">
                     </div>
 					</div>
 				</div>
@@ -121,10 +121,10 @@
 					<div class="col span_12 sliderContainer">
 						<a class="clearFilter">Clear Filter</a>
 						<div data-role="rangeslider" data-track-theme="b" data-theme="a">
-                        <label for="range-3a"></label>
-                        <input type="range" name="range-3a" id="range-3a" min="-180" step=0.01 max="180" value="-180">
-                        <label for="range-3b"></label>
-                        <input type="range" name="range-3b" id="range-3b" min="-180" step=0.01 max="180" value="180">
+                        <label for="longitudemin"></label>
+                        <input type="range" name="longitudemin" id="longitudemin" min="-180" step=0.01 max="180" value="-180">
+                        <label for="longitudemax"></label>
+                        <input type="range" name="longitudemax" id="longitudemax" min="-180" step=0.01 max="180" value="180">
                     </div>
 					</div>
 				</div>
