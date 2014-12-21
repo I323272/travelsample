@@ -9,7 +9,7 @@
 <script type="text/javascript" src="/static/js/homePage.js"></script>
 <link href="static/css/homePage.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/static/js/jquery-1.11.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 <title>TravelDeals</title>
@@ -38,7 +38,7 @@
 			<div class="travelData hotelData"></div>
 			<div class="row show-more">
 				<div class="col span_12">
-					<span class="refresh show-more-span hide"><span></span>Show
+					<span class="refresh show-more-span"><span></span>Show
 						more Hotels</span><span class="no-show-more">There are no more
 						hotels to show</span>
 				</div>

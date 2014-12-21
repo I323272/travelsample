@@ -86,17 +86,20 @@ public class HotelServiceImpl implements HotelService {
     public HotelListData getFilteredData(boolean filter, Map<String,String> param, int pageNo, int offset) {
         if(pageNo==0) {
         if (!filter) {
-            filteredList = hotelArray;
+            if(filteredList!=null) {
+                filteredList.clear();
+            }
+            filteredList.addAll(hotelArray);
         }
         else {
-               //filteredList.clear();
                cityList=getCityFilteredList(param.get("city"));
-               priceList=getPriceFilteredList(param.get("price"));
                System.out.println(cityList.size());
+               priceList=getPriceFilteredList(param.get("price"));
                System.out.println(priceList.size());
                cityList.retainAll(priceList);
-
+               System.out.println(cityList.size());
                Set<Hotels> filteredSet = new HashSet<Hotels>(cityList);
+               filteredList.clear();
                filteredList.addAll(filteredSet);
         }
         }
@@ -112,7 +115,6 @@ public class HotelServiceImpl implements HotelService {
         for (int i = 0; i < hotelArray.size(); i++) {
                 if (StringUtils.containsIgnoreCase(hotelArray.get(i).getCity(), data)){
                     list.add(hotelArray.get(i));
-                    System.out.println(hotelArray.get(i).getCity());
                 }
     }
         return list;

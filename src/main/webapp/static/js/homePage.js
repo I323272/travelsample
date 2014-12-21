@@ -125,7 +125,8 @@ var params;
 					}
 				},
 				error : function(error) {
-					$('.show-more-span').hide()
+					$('.show-more-span').hide();
+					$('.container .no-show-more').show();
 					console.log(error);
 				},
 				complete: function(){

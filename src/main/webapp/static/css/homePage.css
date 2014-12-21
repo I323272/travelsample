@@ -24,8 +24,8 @@ font-weight: 200;
 font-size: 2em;
 text-align: center;
 cursor: pointer;
-display: block;
-padding: 0em 1em;
+display: none;
+padding: 0em 10em;
 }
 
 .span_8 {
@@ -301,14 +301,14 @@ font-weight: 200;
 font-size: 1.5em;
 text-align: center;
 cursor: auto;
-display: none;
+display: block;
 cursor: auto;
 padding: 1em 13em;
 }
 
 .show-more .span_12 {
 	height:100px;
-	padding-top:30px;
+	padding-top:15px;
 }
 
 .load-overlay {
