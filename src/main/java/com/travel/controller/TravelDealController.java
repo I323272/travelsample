@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.travel.dto.HotelListData;
 import com.travel.service.HotelService;
 
+/**
+ * This Controller provides the list of filtered data for all the travel deals
+ */
+
 @Controller
 public class TravelDealController {
 
@@ -26,19 +30,28 @@ public class TravelDealController {
         return "/homePage";
     }
 
+    /**
+     * This method provides the list of travel deals page wise and also provide
+     * a boolean flag whter more pages are available or not
+     */
+
     @ResponseBody
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public HotelListData getFilteredData(HttpServletRequest request) {
-        String formDataValues[]=request.getParameterValues("formDataValues[]");
-        String formDataParams[]=request.getParameterValues("formDataParams[]");;
-        Map<String,String>paramMap=new HashMap<String,String>();
-        for(int i=0;i<formDataValues.length;i++) {
+        String formDataValues[] = request
+                .getParameterValues("formDataValues[]");
+        String formDataParams[] = request
+                .getParameterValues("formDataParams[]");
+        ;
+        Map<String, String> paramMap = new HashMap<String, String>();
+        for (int i = 0; i < formDataValues.length; i++) {
             paramMap.put(formDataParams[i], formDataValues[i]);
         }
-        
+
         HotelListData hotelsData = hotelService.getFilteredData(
                 Boolean.parseBoolean(request.getParameter("filter")), paramMap,
-                Integer.parseInt(request.getParameter("pageNo")), Integer.parseInt(request.getParameter("offset")));
+                Integer.parseInt(request.getParameter("pageNo")),
+                Integer.parseInt(request.getParameter("offset")));
         return hotelsData;
     }
 

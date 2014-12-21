@@ -25,6 +25,10 @@ import com.travel.dto.HotelListData;
 import com.travel.dto.Hotels;
 import com.travel.service.HotelService;
 
+/**
+ * This Service implementation retrieves the masterList and filters the data based on parameters from form
+ */
+
 @Component(value = "hotelService")
 public class HotelServiceImpl implements HotelService {
 
@@ -34,6 +38,7 @@ public class HotelServiceImpl implements HotelService {
     private List<Hotels> list2=new ArrayList<Hotels>();
     private static final String jsonFilePath = "http://deals.expedia.com/beta/deals/hotels.json";
 
+    //Retrieves the master List of all the deals from json and stores them in a list of object
     static {
         try {
             JsonReader reader = new JsonReader(new InputStreamReader(new URL(
@@ -57,6 +62,10 @@ public class HotelServiceImpl implements HotelService {
         }
 
     }
+    
+    /**
+     *{@link HotelService#getAllHotels(int, int)}
+     */
 
     @Override
     public HotelListData getAllHotels(int pageNo, int offset) {
@@ -83,6 +92,10 @@ public class HotelServiceImpl implements HotelService {
 
         return hotelListData;
     }
+    
+    /**
+     *{@link HotelService#getFilteredData(boolean, Map, int, int)}
+     */
 
     @Override
     public HotelListData getFilteredData(boolean filter, Map<String,String> param, int pageNo, int offset) {
