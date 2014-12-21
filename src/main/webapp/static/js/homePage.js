@@ -1,10 +1,18 @@
 
+var offset="8";
+var pageNo = "0";
 var filter=false;
-var payload={};
-payload.offset="8";
-payload.pageNo = "0";
-
+var formData;
+var values;
+var params;
 		$(document).ready(function(){
+			values=new Array();
+			params=new Array();
+			formData=$('#deals :input').serializeArray(); 
+			$.each(formData, function(index,element){
+		           values.push(element.value);
+		           params.push(element.name);
+		        });
 			$('.show-more-span').hide();
 			$('.container .no-show-more').show();
 			getHotels();
@@ -13,7 +21,7 @@ payload.pageNo = "0";
  		           }, 300);
 			 
 			 $('.show-more').find("span").click(function(){
-					payload.pageNo=parseInt(payload.pageNo)+1;
+					pageNo=parseInt(pageNo)+1;
 			        $('.load-overlay').show();
 			        var myVar = setTimeout(function(){
 			          getHotels();
@@ -32,19 +40,22 @@ payload.pageNo = "0";
                  });
 			   
 			   $('input[type="text"]').on('input',function(event) {
-				   		var ele=$(this).attr('id');
-				   		payload.param=ele.split('Filter')[0];
-				   		payload.data=$('#'+ele).val();
-				   		
-				   		if(payload.data==undefined ||payload.data==null || payload.data=='') {
-				   			payload.data='';
-				   			filter = filter || false;
-				   		}
-				   		else {
-					   		filter=true;
-					   		}
-				   		payload.filter=filter;
-				   		payload.pageNo = "0";
+				   values=new Array();
+				   params=new Array();
+						formData=$('#deals :input').serializeArray(); 
+						$.each(formData, function(index,element){
+					           values.push(element.value);
+					           params.push(element.name);
+					        });	
+						
+						$.each(formData, function(){
+				           if(this.value!=undefined && this.value!=null && this.value!='')
+				            	{
+				            	 filter=true;
+				            	 return false;
+				            	}
+				        });			   		
+				   		pageNo = "0";
 				   		$('.load-overlay').show();
 				        var myVar = setTimeout(function(){
 				          getHotels();
@@ -54,13 +65,15 @@ payload.pageNo = "0";
 		});
 		
 		function getHotels() {
+			if (pageNo==0) {
+				$('.travel-screen .hotelData').html('');
+			}
 			$.ajax({
 				type : "POST",
 				url : "/filter",
-				data : payload,
+				data : {"pageNo":pageNo ,"offset":offset,"filter":filter,"formDataValues":values,"formDataParams":params},
 				cache:false,
 				success : function(data) {
-					$('.travel-screen .hotelData').html('');
 					if (data.paginatedHotelList != undefined && data.paginatedHotelList != null && data.paginatedHotelList != '') {
 						
 						var array= generateHotelJson(data.paginatedHotelList),hotelRowHTML,hotelRowHTMLCompiled ;
@@ -86,7 +99,8 @@ payload.pageNo = "0";
 									"imageUrl":array[i].imageUrl,
 									"description":array[i].description,
 									"currency":array[i].currency,
-									"dealDeepLink":array[i].dealDeepLink
+									"dealDeepLink":array[i].dealDeepLink,
+									"city":array[i].city
 					         
 					        };
 					        if(hotelRowHTMLCompiled)
@@ -154,7 +168,8 @@ payload.pageNo = "0";
 					"imageUrl":hotelJson[i].imageUrl,
 					"description":hotelJson[i].description,
 					"currency":hotelJson[i].currency,
-					"dealDeepLink":dealDeepLink
+					"dealDeepLink":dealDeepLink,
+					"city":hotelJson[i].city
 				};
 				hotel_json.push(hotelObj);
 

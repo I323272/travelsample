@@ -4,19 +4,18 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-	type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="static/js/handlebars-v1.3.0.js"></script>
 <script type="text/javascript" src="/static/js/homePage.js"></script>
 <link href="static/css/homePage.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
 <title>TravelDeals</title>
 </head>
 
-<div class="container travel travel-screen">
+<div class="container travel travel-screen" id="deals">
 	<div class="site">
 		<h1>
 			<img align="left" src="static/images/logo.png" class="logo" /><span>MyTrip</span>

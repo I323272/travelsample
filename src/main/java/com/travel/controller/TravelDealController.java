@@ -1,10 +1,14 @@
 package com.travel.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.travel.dto.HotelListData;
@@ -22,24 +26,32 @@ public class TravelDealController {
         return "/homePage";
     }
 
-/*    @ResponseBody
-    @RequestMapping(value = "/hotelsList", method = RequestMethod.POST)
-    public HotelListData getHotelsList(
-            @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
-            @RequestParam(value = "offset", defaultValue = "8") int offset) {
-        HotelListData hotelsData = hotelService.getAllHotels(pageNo, offset);
-        return hotelsData;
-    }*/
+    /*
+     * @ResponseBody
+     * 
+     * @RequestMapping(value = "/hotelsList", method = RequestMethod.POST)
+     * public HotelListData getHotelsList(
+     * 
+     * @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
+     * 
+     * @RequestParam(value = "offset", defaultValue = "8") int offset) {
+     * HotelListData hotelsData = hotelService.getAllHotels(pageNo, offset);
+     * return hotelsData; }
+     */
 
     @ResponseBody
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
-    public HotelListData getFilteredData(
-            @RequestParam(value = "filter", required = true, defaultValue="false") boolean filter,
-            @RequestParam(value = "param", required = false) String param,
-            @RequestParam(value = "data", required = false) String data,
-            @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
-            @RequestParam(value = "offset", defaultValue = "8") int offset) {
-        HotelListData hotelsData = hotelService.getFilteredData(filter,param, data,pageNo,offset);
+    public HotelListData getFilteredData(HttpServletRequest request) {
+        String formDataValues[]=request.getParameterValues("formDataValues[]");
+        String formDataParams[]=request.getParameterValues("formDataParams[]");;
+        Map<String,String>paramMap=new HashMap<String,String>();
+        for(int i=0;i<formDataValues.length;i++) {
+            paramMap.put(formDataParams[i], formDataValues[i]);
+        }
+        
+        HotelListData hotelsData = hotelService.getFilteredData(
+                Boolean.parseBoolean(request.getParameter("filter")), paramMap,
+                Integer.parseInt(request.getParameter("pageNo")), Integer.parseInt(request.getParameter("offset")));
         return hotelsData;
     }
 

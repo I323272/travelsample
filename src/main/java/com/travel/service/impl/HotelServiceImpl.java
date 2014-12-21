@@ -3,12 +3,15 @@ package com.travel.service.impl;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
@@ -20,14 +23,13 @@ import com.travel.dto.HotelListData;
 import com.travel.dto.Hotels;
 import com.travel.service.HotelService;
 
-import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.lang3.StringUtils;
-
 @Component(value = "hotelService")
 public class HotelServiceImpl implements HotelService {
 
     private static List<Hotels> hotelArray = null;
-    private List<Hotels> filteredList = hotelArray;
+    private List<Hotels> filteredList = new ArrayList<Hotels>();
+    private List<Hotels> cityList=null;
+    private List<Hotels> priceList=null;
     private static final String jsonFilePath = "http://deals.expedia.com/beta/deals/hotels.json";
 
     static {
@@ -81,38 +83,52 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public HotelListData getFilteredData(boolean filter, String param,
-            String data, int pageNo, int offset) {
+    public HotelListData getFilteredData(boolean filter, Map<String,String> param, int pageNo, int offset) {
+        if(pageNo==0) {
         if (!filter) {
             filteredList = hotelArray;
-        } else {
-            System.out.println(data);
-            for (int i = 0; i < filteredList.size(); i++) {
-                System.out.println("filteredList:"+filteredList.get(i).getTotalRate());
-            }
-                List<Hotels> list=new ArrayList<Hotels>();
-                for (int i = 0; i < hotelArray.size(); i++) {
-                    try {
-                        if(param.equalsIgnoreCase("city")) {
-                        if (StringUtils.containsIgnoreCase((String)(PropertyUtils.getProperty(hotelArray.get(i), param)), data)){
-                            list.add(hotelArray.get(i));
-                        }
-                        }
-                        else {
-                            if((Float)(PropertyUtils.getProperty(hotelArray.get(i), param))<=Float.parseFloat(data)) {
-                                list.add(hotelArray.get(i));
-                            }
-                        }
-                    } catch (IllegalAccessException | InvocationTargetException
-                            | NoSuchMethodException e) {
-                        e.printStackTrace();
-                    }
-                filteredList=list;
-                //filteredList.retainAll(list);
-            }
+        }
+        else {
+               //filteredList.clear();
+               cityList=getCityFilteredList(param.get("city"));
+               priceList=getPriceFilteredList(param.get("price"));
+               System.out.println(cityList.size());
+               System.out.println(priceList.size());
+               cityList.retainAll(priceList);
+
+               Set<Hotels> filteredSet = new HashSet<Hotels>(cityList);
+               filteredList.addAll(filteredSet);
+        }
         }
         HotelListData hotelListData = getAllHotels(pageNo, offset);
         return hotelListData;
     }
+    
+    private List<Hotels> getCityFilteredList(String data) {
+        List<Hotels> list=new ArrayList<Hotels>();
+        if(StringUtils.isEmpty(data)) {
+            return hotelArray;
+        }
+        for (int i = 0; i < hotelArray.size(); i++) {
+                if (StringUtils.containsIgnoreCase(hotelArray.get(i).getCity(), data)){
+                    list.add(hotelArray.get(i));
+                    System.out.println(hotelArray.get(i).getCity());
+                }
+    }
+        return list;
+    }
+    
+    private List<Hotels> getPriceFilteredList(String data) {
+        List<Hotels> list=new ArrayList<Hotels>();
+        if(StringUtils.isEmpty(data)) {
+            return hotelArray;
+        }
+        for (int i = 0; i < hotelArray.size(); i++) {
+            if(hotelArray.get(i).getTotalRate()<=Float.parseFloat(data)) {
+                list.add(hotelArray.get(i));
+        }
+    }
+        return list;
 
+}
 }
