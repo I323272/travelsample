@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -31,6 +32,7 @@ import com.travel.service.HotelService;
 
 @Component(value = "hotelService")
 public class HotelServiceImpl implements HotelService {
+    private final static Logger LOGGER = Logger.getLogger(HotelServiceImpl.class.getName()); 
 
     private static List<Hotels> hotelArray = null;
     private List<Hotels> filteredList = new ArrayList<Hotels>();
@@ -40,27 +42,12 @@ public class HotelServiceImpl implements HotelService {
 
     //Retrieves the master List of all the deals from json and stores them in a list of object
     static {
+        
         try {
-            JsonReader reader = new JsonReader(new InputStreamReader(new URL(
-                    jsonFilePath).openStream(), "UTF-8"));
-            JsonArray userArray = new JsonParser().parse(reader)
-                    .getAsJsonArray();
-            if (userArray != null && userArray.isJsonArray()) {
-                hotelArray = new ArrayList<Hotels>();
-                for (JsonElement aUser : userArray) {
-                    Hotels hotels = new Gson().fromJson(aUser, Hotels.class);
-                    hotelArray.add(hotels);
-                }
-            }
-
-        } catch (FileNotFoundException e) {
-            hotelArray = Collections.emptyList();
-            e.printStackTrace();
-        } catch (IOException e) {
-            hotelArray = Collections.emptyList();
+            getCompleteList();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     
     /**
@@ -68,7 +55,8 @@ public class HotelServiceImpl implements HotelService {
      */
 
     @Override
-    public HotelListData getAllHotels(int pageNo, int offset) {
+    public HotelListData getAllHotels(int pageNo, int offset) throws Exception {
+        LOGGER.info("Entering getAllHotels");
         boolean moreResults = true;
         HotelListData hotelListData = new HotelListData();
         List<Hotels> paginatedHotelList = Collections.emptyList();
@@ -87,8 +75,10 @@ public class HotelServiceImpl implements HotelService {
         } else {
             moreResults = false;
         }
+        LOGGER.info("Number of elements in page: "+pageNo + "are : " + paginatedHotelList.size());
         hotelListData.setPaginatedHotelList(paginatedHotelList);
         hotelListData.setMoreResults(moreResults);
+        LOGGER.info("Exiting getAllHotels");
 
         return hotelListData;
     }
@@ -98,7 +88,8 @@ public class HotelServiceImpl implements HotelService {
      */
 
     @Override
-    public HotelListData getFilteredData(boolean filter, Map<String,String> param, int pageNo, int offset) {
+    public HotelListData getFilteredData(boolean filter, Map<String,String> param, int pageNo, int offset) throws Exception {
+        LOGGER.info("Entering getFilteredData");
         if(pageNo==0) {
         if (!filter) {
                 filteredList.clear();
@@ -124,13 +115,16 @@ public class HotelServiceImpl implements HotelService {
                filteredList.clear();
                }
                filteredList.addAll(filteredSet);
+               LOGGER.info("Number of elements in final filtered list : "+filteredList.size());
         }
         }
         HotelListData hotelListData = getAllHotels(pageNo, offset);
+        LOGGER.info("Exiting getFilteredData");
         return hotelListData;
     }
     
-    private List<Hotels> getCityFilteredList(String data) {
+    private List<Hotels> getCityFilteredList(String data) throws Exception {
+        LOGGER.info("Entering getCityFilteredList");
         List<Hotels> list=new ArrayList<Hotels>();
         if(StringUtils.isEmpty(data)) {
             return hotelArray;
@@ -140,10 +134,12 @@ public class HotelServiceImpl implements HotelService {
                     list.add(hotelArray.get(i));
                 }
     }
+        LOGGER.info("Exiting getCityFilteredList");
         return list;
     }
     
-    private List<Hotels> getPriceFilteredList(String data) {
+    private List<Hotels> getPriceFilteredList(String data) throws Exception {
+        LOGGER.info("Entering getPriceFilteredList");
         List<Hotels> list=new ArrayList<Hotels>();
         if(StringUtils.isEmpty(data)) {
             return hotelArray;
@@ -153,11 +149,13 @@ public class HotelServiceImpl implements HotelService {
                 list.add(hotelArray.get(i));
         }
     }
+        LOGGER.info("Exiting getPriceFilteredList");
         return list;
 
 }
     
-    private List<Hotels> getRangeFilteredList(String min,String max,String param) {
+    private List<Hotels> getRangeFilteredList(String min,String max,String param) throws Exception {
+        LOGGER.info("Entering getRangeFilteredList");
         List<Hotels> list=new ArrayList<Hotels>();
         if(StringUtils.isEmpty(min) && StringUtils.isEmpty(max)) {
             return hotelArray;
@@ -171,8 +169,24 @@ public class HotelServiceImpl implements HotelService {
                 e.printStackTrace();
             } 
     }
+        LOGGER.info("Exiting getRangeFilteredList");
         return list;
 
 }
+    
+    private static void getCompleteList() throws Exception {
+            JsonReader reader = new JsonReader(new InputStreamReader(new URL(
+                    jsonFilePath).openStream(), "UTF-8"));
+            JsonArray userArray = new JsonParser().parse(reader)
+                    .getAsJsonArray();
+            if (userArray != null && userArray.isJsonArray()) {
+                hotelArray = new ArrayList<Hotels>();
+                for (JsonElement aUser : userArray) {
+                    Hotels hotels = new Gson().fromJson(aUser, Hotels.class);
+                    hotelArray.add(hotels);
+                }
+            }
+            LOGGER.info("Number of all travel deals from json "+ hotelArray.size());
+    }
     
 }

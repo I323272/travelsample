@@ -2,6 +2,7 @@ package com.travel.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,6 +22,8 @@ import com.travel.service.HotelService;
 @Controller
 public class TravelDealController {
 
+    private final static Logger LOGGER = Logger.getLogger(TravelDealController.class.getName()); 
+
     @Autowired
     private HotelService hotelService;
 
@@ -32,26 +35,33 @@ public class TravelDealController {
 
     /**
      * This method provides the list of travel deals page wise and also provide
-     * a boolean flag whter more pages are available or not
+     * a boolean flag where more pages are available or not
      */
 
     @ResponseBody
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public HotelListData getFilteredData(HttpServletRequest request) {
+        LOGGER.info("Entering getFilteredData");
+        HotelListData hotelsData=null;
         String formDataValues[] = request
                 .getParameterValues("formDataValues[]");
         String formDataParams[] = request
                 .getParameterValues("formDataParams[]");
-        ;
         Map<String, String> paramMap = new HashMap<String, String>();
         for (int i = 0; i < formDataValues.length; i++) {
             paramMap.put(formDataParams[i], formDataValues[i]);
         }
 
-        HotelListData hotelsData = hotelService.getFilteredData(
+        try {
+        hotelsData = hotelService.getFilteredData(
                 Boolean.parseBoolean(request.getParameter("filter")), paramMap,
                 Integer.parseInt(request.getParameter("pageNo")),
                 Integer.parseInt(request.getParameter("offset")));
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        LOGGER.info("Filtered List size is " +hotelsData.getPaginatedHotelList().size());
+        LOGGER.info("Exiting getFilteredData");
         return hotelsData;
     }
 
