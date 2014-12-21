@@ -4,7 +4,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="/static/js/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="/static/js/handlebars-v1.3.0.js"></script>
 <script type="text/javascript" src="/static/js/homePage.js"></script>
 <link href="static/css/homePage.css" type="text/css" rel="stylesheet" />

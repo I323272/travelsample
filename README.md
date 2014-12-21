@@ -10,9 +10,6 @@ Set up
 Open Git Bash
 ```sh
 $ git clone https://github.com/nehaknp/travelsample
-$ heroku login
-Heroku Username:
-Password:
 $ cd C:\Users\<User>\travelsample
 $ mvn clean install
 $ foreman start web -f Procfile.windows
@@ -21,6 +18,9 @@ $ foreman start web -f Procfile.windows
 Your app should now be running on [localhost:8080](http://localhost:8080/).
 
 ## Commiting your code
+$ heroku login
+Heroku Username:
+Password:
 $ heroku create
 $ git push heroku master
 $ git add .
