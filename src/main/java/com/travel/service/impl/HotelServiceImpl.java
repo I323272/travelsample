@@ -95,9 +95,7 @@ public class HotelServiceImpl implements HotelService {
                list1.clear();
                list2.clear();
                list1.addAll(getCityFilteredList(param.get("city")));
-               System.out.println(list1.size());
                list2.addAll(getPriceFilteredList(param.get("price")));
-               System.out.println(list2.size());
                list1.retainAll(list2);
                list2.clear();
                System.out.println(list1.size());

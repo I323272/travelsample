@@ -39,30 +39,38 @@ var params;
                    $(this).next('.row.desc').toggleClass('open');
                  });
 			   
-			   $('input[type="text"]').on('input',function(event) {
-				   values=new Array();
-				   params=new Array();
-						formData=$('#deals :input').serializeArray(); 
-						$.each(formData, function(index,element){
-					           values.push(element.value);
-					           params.push(element.name);
-					        });	
-						
-						$.each(formData, function(){
-				           if(this.value!=undefined && this.value!=null && this.value!='')
-				            	{
-				            	 filter=true;
-				            	 return false;
-				            	}
-				        });			   		
-				   		pageNo = "0";
-				   		$('.load-overlay').show();
-				        var myVar = setTimeout(function(){
-				          getHotels();
-				        },500);
+			   $('input[type="text"]').on('input',function(event) {				   
+				   getFilteredList();
+			    });
+			   
+			   $('input[type="range"]').change(function() {				   
+				   getFilteredList();
 			    });
 			
 		});
+		
+		function getFilteredList() {
+			values=new Array();
+			   params=new Array();
+					formData=$('#deals :input').serializeArray(); 
+					$.each(formData, function(index,element){
+				           values.push(element.value);
+				           params.push(element.name);
+				        });	
+					
+					$.each(formData, function(){
+			           if(this.value!=undefined && this.value!=null && this.value!='')
+			            	{
+			            	 filter=true;
+			            	 return false;
+			            	}
+			        });			   		
+			   		pageNo = "0";
+			   		$('.load-overlay').show();
+			        var myVar = setTimeout(function(){
+			          getHotels();
+			        },500);
+		}
 		
 		function getHotels() {
 			if (pageNo==0) {
