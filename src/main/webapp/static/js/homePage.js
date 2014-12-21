@@ -43,7 +43,8 @@ var params;
 				   getFilteredList();
 			    });
 			   
-			   $('input[type="range"]').change(function() {				   
+			   
+			  $(document).on("slidestop","input#ratingmin,input#ratingmax,input#latitudemin,input#latitudemax,input#longitudemin,input#longitudemax",function() {	
 				   getFilteredList();
 			    });
 			

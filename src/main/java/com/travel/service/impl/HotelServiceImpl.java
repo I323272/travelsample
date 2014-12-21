@@ -98,7 +98,6 @@ public class HotelServiceImpl implements HotelService {
                list2.addAll(getPriceFilteredList(param.get("price")));
                list1.retainAll(list2);
                list2.clear();
-               System.out.println(list1.size());
                list2=getRangeFilteredList(param.get("ratingmin"), param.get("ratingmax"),"guestRating");
                list1.retainAll(list2);
                list2.clear();
