@@ -44,7 +44,7 @@ var params;
 			    });
 			   
 			   
-			  $(document).on("slidestop","input#ratingmin,input#ratingmax,input#latitudemin,input#latitudemax,input#longitudemin,input#longitudemax",function() {	
+			  $(document).on("slidestop","input#guestratingmin,input#guestratingmax,input#latitudemin,input#latitudemax,input#longitudemin,input#longitudemax,input#starratingmin,input#starratingmax",function() {	
 				   getFilteredList();
 			    });
 			

@@ -39,6 +39,12 @@ public class HotelServiceImpl implements HotelService {
     private List<Hotels> list1=new ArrayList<Hotels>();
     private List<Hotels> list2=new ArrayList<Hotels>();
     private static final String jsonFilePath = "http://deals.expedia.com/beta/deals/hotels.json";
+    private static final String RATINGMINVALUE="0";
+    private static final String RATINGMAXVALUE="5";
+    private static final String LATITUDEMINVALUE="-85";
+    private static final String LATITUDEMAXVALUE="85";
+    private static final String LONGITUDEMAXVALUE="-120";
+    private static final String LONGITUDEMINVALUE="120";
 
     //Retrieves the master List of all the deals from json and stores them in a list of object
     static {
@@ -92,24 +98,36 @@ public class HotelServiceImpl implements HotelService {
         LOGGER.info("Entering getFilteredData");
         if(pageNo==0) {
         if (!filter) {
-                filteredList.clear();
+            filteredList.clear();
             filteredList.addAll(hotelArray);
         }
         else {
                list1.clear();
+               list1.addAll(hotelArray);
+               list2.addAll(getCityFilteredList(param.get("city")));
+               list1.clear();
+               list1.addAll(list2);
                list2.clear();
-               list1.addAll(getCityFilteredList(param.get("city")));
                list2.addAll(getPriceFilteredList(param.get("price")));
-               list1.retainAll(list2);
+               list1.clear();
+               list1.addAll(list2);
                list2.clear();
-               list2=getRangeFilteredList(param.get("ratingmin"), param.get("ratingmax"),"guestRating");
-               list1.retainAll(list2);
+               list2=getRangeFilteredList(param.get("guestratingmin"), param.get("guestratingmax"),"guestRating",RATINGMINVALUE,RATINGMAXVALUE);
+               list1.clear();
+               list1.addAll(list2);
                list2.clear();
-               list2.addAll(getRangeFilteredList(param.get("latitudemin"), param.get("latitudemax"),"latitude"));
-               list1.retainAll(list2);
+               list2=getRangeFilteredList(param.get("starratingmin"), param.get("starratingmax"),"starRating",RATINGMINVALUE,RATINGMAXVALUE);
+               list1.clear();
+               list1.addAll(list2);
                list2.clear();
-               list2.addAll(getRangeFilteredList(param.get("longitudemin"), param.get("longitudemax"),"longitude"));
-               list1.retainAll(list2);
+               list2=getRangeFilteredList(param.get("latitudemin"), param.get("latitudemax"),"latitude",LATITUDEMINVALUE,LATITUDEMAXVALUE);
+               list1.clear();
+               list1.addAll(list2);
+               list2.clear();
+               list2=getRangeFilteredList(param.get("longitudemin"), param.get("longitudemax"),"longitude",LONGITUDEMINVALUE,LONGITUDEMAXVALUE);
+               list1.clear();
+               list1.addAll(list2);
+               list2.clear();
                Set<Hotels> filteredSet = new HashSet<Hotels>(list1);
                if(filteredList!=null) {
                filteredList.clear();
@@ -127,11 +145,11 @@ public class HotelServiceImpl implements HotelService {
         LOGGER.info("Entering getCityFilteredList");
         List<Hotels> list=new ArrayList<Hotels>();
         if(StringUtils.isEmpty(data)) {
-            return hotelArray;
+            return list1;
         }
-        for (int i = 0; i < hotelArray.size(); i++) {
-                if (StringUtils.containsIgnoreCase(hotelArray.get(i).getCity(), data)){
-                    list.add(hotelArray.get(i));
+        for (int i = 0; i < list1.size(); i++) {
+                if (StringUtils.containsIgnoreCase(list1.get(i).getCity(), data)){
+                    list.add(list1.get(i));
                 }
     }
         LOGGER.info("Exiting getCityFilteredList");
@@ -142,11 +160,11 @@ public class HotelServiceImpl implements HotelService {
         LOGGER.info("Entering getPriceFilteredList");
         List<Hotels> list=new ArrayList<Hotels>();
         if(StringUtils.isEmpty(data)) {
-            return hotelArray;
+            return list1;
         }
-        for (int i = 0; i < hotelArray.size(); i++) {
-            if(hotelArray.get(i).getTotalRate()<=Float.parseFloat(data)) {
-                list.add(hotelArray.get(i));
+        for (int i = 0; i < list1.size(); i++) {
+            if(list1.get(i).getTotalRate()<=Float.parseFloat(data)) {
+                list.add(list1.get(i));
         }
     }
         LOGGER.info("Exiting getPriceFilteredList");
@@ -154,16 +172,16 @@ public class HotelServiceImpl implements HotelService {
 
 }
     
-    private List<Hotels> getRangeFilteredList(String min,String max,String param) throws Exception {
+    private List<Hotels> getRangeFilteredList(String min,String max,String param,String maxValue,String minValue) throws Exception {
         LOGGER.info("Entering getRangeFilteredList");
         List<Hotels> list=new ArrayList<Hotels>();
-        if(StringUtils.isEmpty(min) && StringUtils.isEmpty(max)) {
-            return hotelArray;
+        if((StringUtils.isEmpty(min) && StringUtils.isEmpty(max))||(maxValue.equals(max)&&(minValue.equals(min)))) {
+            return list1;
         }
-        for (int i = 0; i < hotelArray.size(); i++) {
+        for (int i = 0; i < list1.size(); i++) {
             try {
-                if((Float)PropertyUtils.getProperty(hotelArray.get(i), param) >= Float.parseFloat(min) && (Float)PropertyUtils.getProperty(hotelArray.get(i), param) <= Float.parseFloat(max)) {
-                    list.add(hotelArray.get(i));
+                if((Float)PropertyUtils.getProperty(list1.get(i), param) >= Float.parseFloat(min) && (Float)PropertyUtils.getProperty(list1.get(i), param) <= Float.parseFloat(max)) {
+                    list.add(list1.get(i));
                 }
             } catch (NumberFormatException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 e.printStackTrace();

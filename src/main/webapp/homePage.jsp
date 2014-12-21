@@ -63,7 +63,7 @@
 				<div class="row title active">
 					<div class="col span_12">
 						<p>
-							Rating<span></span>
+							Guest Rating<span></span>
 						</p>
 					</div>
 				</div>
@@ -71,13 +71,31 @@
 					<div class="col span_12 sliderContainer">
 						<a class="clearFilter">Clear Filter</a>
 					<div data-role="rangeslider" data-track-theme="b" data-theme="a">
-                        <label for="ratingmin"></label>
-                        <input type="range" name="ratingmin" id="ratingmin" min="0" step=0.1 max="5" value="0">
-                        <label for="ratingmax"></label>
-                        <input type="range" name="ratingmax" id="ratingmax" min="0" step=0.1 max="5" value="5">
+                        <label for="guestratingmin"></label>
+                        <input type="range" name="guestratingmin" id="guestratingmin" min="0" step=0.1 max="5" value="0">
+                        <label for="guestratingmax"></label>
+                        <input type="range" name="guestratingmax" id="guestratingmax" min="0" step=0.1 max="5" value="5">
                     </div>
 					</div>
 				</div>
+				<div class="row title active">
+                    <div class="col span_12">
+                        <p>
+                            Star Rating<span></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row desc open">
+                    <div class="col span_12 sliderContainer">
+                        <a class="clearFilter">Clear Filter</a>
+                    <div data-role="rangeslider" data-track-theme="b" data-theme="a">
+                        <label for="starratingmin"></label>
+                        <input type="range" name="starratingmin" id="starratingmin" min="0" step=0.1 max="5" value="0">
+                        <label for="ratingmax"></label>
+                        <input type="range" name="starratingmax" id="starratingmax" min="0" step=0.1 max="5" value="5">
+                    </div>
+                    </div>
+                </div>
 				<div class="row title active">
 					<div class="col span_12">
 						<p>
