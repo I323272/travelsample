@@ -3,6 +3,7 @@ package com.travel.service.impl;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -90,8 +92,8 @@ public class HotelServiceImpl implements HotelService {
             filteredList.addAll(hotelArray);
         }
         else {
-                list1.clear();
-                list2.clear();
+               list1.clear();
+               list2.clear();
                list1.addAll(getCityFilteredList(param.get("city")));
                System.out.println(list1.size());
                list2.addAll(getPriceFilteredList(param.get("price")));
@@ -99,7 +101,13 @@ public class HotelServiceImpl implements HotelService {
                list1.retainAll(list2);
                list2.clear();
                System.out.println(list1.size());
-               list2=getRatingFilteredList(param.get("ratingmin"),param.get("ratingmax"));
+               list2=getRangeFilteredList(param.get("ratingmin"), param.get("ratingmax"),"guestRating");
+               list1.retainAll(list2);
+               list2.clear();
+               list2.addAll(getRangeFilteredList(param.get("latitudemin"), param.get("latitudemax"),"latitude"));
+               list1.retainAll(list2);
+               list2.clear();
+               list2.addAll(getRangeFilteredList(param.get("longitudemin"), param.get("longitudemax"),"longitude"));
                list1.retainAll(list2);
                Set<Hotels> filteredSet = new HashSet<Hotels>(list1);
                if(filteredList!=null) {
@@ -139,17 +147,22 @@ public class HotelServiceImpl implements HotelService {
 
 }
     
-    private List<Hotels> getRatingFilteredList(String min,String max) {
+    private List<Hotels> getRangeFilteredList(String min,String max,String param) {
         List<Hotels> list=new ArrayList<Hotels>();
         if(StringUtils.isEmpty(min) && StringUtils.isEmpty(max)) {
             return hotelArray;
         }
         for (int i = 0; i < hotelArray.size(); i++) {
-            if(hotelArray.get(i).getGuestRating()>=Float.parseFloat(min) && hotelArray.get(i).getGuestRating()<=Float.parseFloat(max)) {
-                list.add(hotelArray.get(i));
-        }
+            try {
+                if((Float)PropertyUtils.getProperty(hotelArray.get(i), param) >= Float.parseFloat(min) && (Float)PropertyUtils.getProperty(hotelArray.get(i), param) <= Float.parseFloat(max)) {
+                    list.add(hotelArray.get(i));
+                }
+            } catch (NumberFormatException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            } 
     }
         return list;
 
 }
+    
 }
