@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="lib" path="target/repo/jsp-2.1-glassfish-2.1.v20100127.jar"/>
-	<classpathentry kind="lib" path="target/repo/jsp-api-2.1-glassfish-2.1.v20100127.jar"/>
-	<classpathentry kind="lib" path="target/repo/servlet-api-2.5.jar"/>
-	<classpathentry kind="lib" path="target/repo/spring-aop-4.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="target/repo/spring-beans-4.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="target/repo/spring-context-4.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="target/repo/spring-core-4.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="target/repo/spring-expression-4.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="target/repo/spring-web-4.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="target/repo/spring-webmvc-4.0.5.RELEASE.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="target/repo/ant-1.6.5.jar"/>
-	<classpathentry kind="lib" path="target/repo/aopalliance-1.0.jar"/>
-	<classpathentry kind="lib" path="target/repo/commons-logging-api-1.1.jar"/>
-	<classpathentry kind="lib" path="target/repo/ecj-3.5.1.jar"/>
-	<classpathentry kind="lib" path="target/repo/gson-2.3.1.jar"/>
-	<classpathentry kind="lib" path="target/repo/jackson-core-asl-1.9.10.jar"/>
-	<classpathentry kind="lib" path="target/repo/jackson-jaxrs-1.6.1.jar"/>
-	<classpathentry kind="lib" path="target/repo/jackson-mapper-asl-1.9.10.jar"/>
-	<classpathentry kind="lib" path="target/repo/jetty-continuation-7.4.4.v20110707.jar"/>
-	<classpathentry kind="lib" path="target/repo/jetty-http-7.4.4.v20110707.jar"/>
-	<classpathentry kind="lib" path="target/repo/jetty-io-7.4.4.v20110707.jar"/>
-	<classpathentry kind="lib" path="target/repo/jetty-security-7.4.4.v20110707.jar"/>
-	<classpathentry kind="lib" path="target/repo/jetty-server-7.4.4.v20110707.jar"/>
-	<classpathentry kind="lib" path="target/repo/jetty-servlet-7.4.4.v20110707.jar"/>
-	<classpathentry kind="lib" path="target/repo/commons-beanutils-1.8.3.jar"/>
-	<classpathentry kind="lib" path="target/repo/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="target/repo/commons-lang3-3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jsp-2.1-glassfish-2.1.v20100127.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jsp-api-2.1-glassfish-2.1.v20100127.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/servlet-api-2.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/spring-aop-4.0.5.RELEASE.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/spring-beans-4.0.5.RELEASE.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/spring-context-4.0.5.RELEASE.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/spring-core-4.0.5.RELEASE.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/spring-expression-4.0.5.RELEASE.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/spring-web-4.0.5.RELEASE.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/spring-webmvc-4.0.5.RELEASE.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/ant-1.6.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/aopalliance-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/commons-logging-api-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/ecj-3.5.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/gson-2.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jackson-core-asl-1.9.10.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jackson-jaxrs-1.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jackson-mapper-asl-1.9.10.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jetty-continuation-7.4.4.v20110707.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jetty-http-7.4.4.v20110707.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jetty-io-7.4.4.v20110707.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jetty-security-7.4.4.v20110707.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jetty-server-7.4.4.v20110707.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jetty-servlet-7.4.4.v20110707.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/commons-beanutils-1.8.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/commons-logging-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/commons-lang3-3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jetty-util-7.4.4.v20110707.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jetty-webapp-7.4.4.v20110707.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/repo/jetty-xml-7.4.4.v20110707.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
